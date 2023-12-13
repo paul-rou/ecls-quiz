@@ -1,5 +1,5 @@
-import Image from "next/image";
 import ThemeList from "../components/ThemeList/ThemeList";
+import NavBar from "@/components/navBar/NavBar";
 
 export default function Home() {
   const listOfThemes = [
@@ -11,10 +11,8 @@ export default function Home() {
     "Autre",
   ];
   return (
-    <div className="flex flex-col text-center">
-      <h1>Sur quel thème désirez-vous jouer ?</h1>
-      <ThemeList listOfThemes={listOfThemes} />
-      <button>Continuer</button>
-    </div>
+    <>
+      <NavBar />
+    </>
   );
 }
