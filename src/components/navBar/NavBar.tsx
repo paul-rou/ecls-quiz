@@ -6,7 +6,7 @@ import ParameterLogo from "../../../public/parameter-logo.svg";
 import ThemeCard from "../themeCard/ThemeCard";
 import vieFamiliale from "../../../public/theme-svg/vie-familiale.svg";
 
-// Pour l'instant le svg est hardcodé, mais il faudra le passer en props plus tard
+// !! Pour l'instant le svg est hardcodé, mais il faudra le passer en props plus tard
 const NavBar = () => {
   return (
     <nav className="flex justify-around items-center w-full pt-1 pb-2 bg-[#0E956D] border-b-[10px] border-[#A5CE87]">

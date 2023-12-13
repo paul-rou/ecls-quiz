@@ -1,3 +1,4 @@
+import QuizWrapper from "@/components/quizElements/quizWrapper/QuizWrapper";
 import ThemeList from "../components/ThemeList/ThemeList";
 import NavBar from "@/components/navBar/NavBar";
 
@@ -13,6 +14,7 @@ export default function Home() {
   return (
     <>
       <NavBar />
+      <QuizWrapper />
     </>
   );
 }
