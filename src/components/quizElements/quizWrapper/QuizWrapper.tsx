@@ -7,6 +7,7 @@ import QuizAnswerResult from "../quizAnswerResult/QuizAnswerResult";
 import QuizAnswerDescription from "../quiAnswerDescription/QuizAnswerDescription";
 import question from "../../../../temp_quiz_data/question.json";
 import { Question } from "@/types/quizTypes";
+import NextButton from "../nextButton/NextButton";
 
 type QuizState = {
   isAnswered: Boolean;
@@ -60,6 +61,7 @@ const QuizWrapper = () => {
             description={questionData.description}
             sourceLink={questionData.source}
           />
+          <NextButton setNextQuestion={() => {}} />
         </>
       )}
     </div>
