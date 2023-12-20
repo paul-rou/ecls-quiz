@@ -43,6 +43,7 @@ const QuizWrapper = () => {
           />
           <VerifiedButton
             setVerified={() => {
+              if (quizState.answerIndex == -1) return;
               setQuizState({ ...quizState, isAnswered: true });
             }}
           />
@@ -61,7 +62,11 @@ const QuizWrapper = () => {
             description={questionData.description}
             sourceLink={questionData.source}
           />
-          <NextButton setNextQuestion={() => {}} />
+          <NextButton
+            setNextQuestion={() => {
+              setQuizState({ isAnswered: false, answerIndex: -1 });
+            }}
+          />
         </>
       )}
     </div>
