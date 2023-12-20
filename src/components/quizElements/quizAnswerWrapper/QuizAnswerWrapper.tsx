@@ -1,22 +1,23 @@
 import { useState } from "react";
 import QuizCard from "../quizCard/QuizCard";
 
+interface QuizAnswerWrapperProps {
+  answers: string[];
+  selectedAnswer: number;
+  setSelectedAnswer: (index: number) => void;
+}
+
 // !! Les props pour les réponses sont pour l'instant hardcodées
-const QuizAnswerWrapper = () => {
-  const answerContentList = [
-    "Le repassage",
-    "La cuisine",
-    "Le nettoyage des sanitaires",
-    "Le nettoyage du four",
-  ];
-  const [selectedAnswer, setSelectedAnswer] = useState<number | undefined>();
+const QuizAnswerWrapper = (props: QuizAnswerWrapperProps) => {
   return (
     <div className="grid grid-cols-2 gap-2 w-full">
-      {answerContentList.map((answerContent, index) => (
+      {props.answers.map((answerContent, index) => (
         <QuizCard
           answerContent={answerContent}
-          selected={selectedAnswer == index}
-          setSelected={() => setSelectedAnswer(index)}
+          selected={props.selectedAnswer == index}
+          setSelected={() => {
+            props.setSelectedAnswer(index);
+          }}
           key={index}
         />
       ))}

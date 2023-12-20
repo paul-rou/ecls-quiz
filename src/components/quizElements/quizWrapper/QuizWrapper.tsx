@@ -5,35 +5,61 @@ import QuizAnswerWrapper from "../quizAnswerWrapper/QuizAnswerWrapper";
 import VerifiedButton from "../verifiedButton/VerifiedButton";
 import QuizAnswerResult from "../quizAnswerResult/QuizAnswerResult";
 import QuizAnswerDescription from "../quiAnswerDescription/QuizAnswerDescription";
+import question from "../../../../temp_quiz_data/question.json";
+import { Question } from "@/types/quizTypes";
 
-type QuizState = "question" | "right" | "wrong";
+type QuizState = {
+  isAnswered: Boolean;
+  answerIndex: number;
+};
 
 // !! la question est pour l'instant hardcodée, il faudra la passer en props plus tard
 const QuizWrapper = () => {
-  const [quizState, setQuizState] = useState<QuizState>("question");
-  const description =
-    "En effet, seul 31% des hommes acceptent de s'y mettre !\n Les hommes sont à 48% pour le nettoyage du four, 55% pour les sanitaires et 66% pour la cuisine.";
+  const [quizState, setQuizState] = useState<QuizState>({
+    isAnswered: false,
+    answerIndex: -1,
+  });
+  const questionData: Question = {
+    question: question.question,
+    answers: question.answers,
+    correctAnswer: question.correctAnswer,
+    description: question.description,
+    source: question.source,
+  };
   return (
     <div className="flex flex-col items-center text-center mx-20">
       <h1 className="text-[#4B4B4B] font-bold text-xl my-10">
-        Quelle est la tâche ménagère la moins prise en charge par les hommes ?
+        {questionData.question}
       </h1>
-      {quizState == "question" ? (
+      {!quizState.isAnswered ? (
         <>
-          <QuizAnswerWrapper />
+          <QuizAnswerWrapper
+            answers={questionData.answers}
+            selectedAnswer={quizState.answerIndex}
+            setSelectedAnswer={(index: number) => {
+              setQuizState({ ...quizState, answerIndex: index });
+            }}
+          />
           <VerifiedButton
             setVerified={() => {
-              setQuizState("right");
+              setQuizState({ ...quizState, isAnswered: true });
             }}
           />
         </>
       ) : (
         <>
           <QuizAnswerResult
-            rightAnswer="Le repassage"
-            wrongAnswer="Le nettoyage du four"
+            rightAnswer={questionData.answers[questionData.correctAnswer]}
+            wrongAnswer={
+              questionData.correctAnswer == quizState.answerIndex
+                ? ""
+                : questionData.answers[quizState.answerIndex]
+            }
           />
-          <QuizAnswerDescription description={description} sourceLink="" />
+          <QuizAnswerDescription
+            description={questionData.description}
+            sourceLink={questionData.source}
+          />
         </>
       )}
     </div>
