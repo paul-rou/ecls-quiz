@@ -68,6 +68,7 @@ const MapChoice = () => {
           themeLogo={choice.themeLogo}
           position={choice.position}
           setSelected={() => setSelectedAnswer(index)}
+          isSelected={selectedAnswer === index}
         />
       ))}
     </div>

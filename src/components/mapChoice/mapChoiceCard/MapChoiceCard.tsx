@@ -8,6 +8,7 @@ interface Props {
   themeLogo: string;
   position: string;
   setSelected: () => void;
+  isSelected: boolean;
 }
 
 const MapChoiceCard = ({
@@ -16,6 +17,7 @@ const MapChoiceCard = ({
   themeLogo,
   position,
   setSelected,
+  isSelected,
 }: Props) => {
   // On arrondit les bords du bloc différement en fonction de sa position
   let roundedClass = "";
@@ -27,19 +29,35 @@ const MapChoiceCard = ({
   }
 
   return (
-    <div onClick={() => setSelected()}>
-      <div className="flex w-[394px] items-center gap-[15px] pl-[18px] pr-[186.47px] py-[20px] relative rounded-[16px]">
+    <button onClick={() => setSelected()}>
+      <div
+        className={`flex w-[394px] items-center justify-center pl-[20px] pr-[20px] py-[20px] relative ${
+          isSelected ? "z-10" : ""
+        }`}
+      >
         <div
-          className={`absolute w-[394px] h-[74px] top-0 left-0 bg-white ${roundedClass} border-t-2 [border-top-style:solid] border-r-2 [border-right-style:solid] border-l-2 [border-left-style:solid] border-neutral-200`}
+          className={`absolute w-[394px] h-[74px] ${roundedClass} border-t-2 [border-top-style:solid] border-r-2 [border-right-style:solid] border-l-2 [border-left-style:solid] 
+          border-b-2 [border-bottom-style:solid] 
+          ${
+            isSelected
+              ? "bg-gray-100 border-sky-900"
+              : "bg-white border-slate-200"
+          }`}
         />
-        <div className="inline-flex max-w-[303.38px] items-start justify-center pl-0 pr-[0.53px] py-0 relative flex-[0_0_auto] mr-[-1.00px]">
-          <Image src={themeLogo} alt={altLogo} width={32} height={32} />
-          <div className="relative w-fit mt-[-1.00px] [font-family:'Inter-Bold',Helvetica] font-bold text-[#4b4b4b] text-[15px] text-center tracking-[0] leading-[20px] whitespace-nowrap">
+        <div className="inline-flex max-w-[303.38px] items-center justify-center pl-0 pr-0 py-0 relative flex-[0_0_auto] mr-[-1.00px]">
+          <Image
+            src={themeLogo}
+            alt={altLogo}
+            width={32}
+            height={32}
+            className="mr-1"
+          />
+          <div className="relative w-fit [font-family:'Inter-Bold', Helvetica] font-bold text-[#4b4b4b] text-[15px] tracking-wide leading-[20px] whitespace-nowrap">
             {content}
           </div>
         </div>
       </div>
-    </div>
+    </button>
   );
 };
 
