@@ -1,6 +1,5 @@
 "use client";
 
-import QuizSolutionWrapper from "@/components/quizElements/quizSolutionWrapper/QuizSolutionWrapper";
 import MapChoice from "@/components/mapChoice/MapChoice";
 import NavBar from "@/components/navBar/NavBar";
 
