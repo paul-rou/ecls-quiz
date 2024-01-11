@@ -13,6 +13,7 @@ type QuizState = {
   isAnswered: Boolean;
   answerIndex: number;
   questionIndex: number;
+  score: number;
 };
 
 // Pour l'instant, nous importons l'ensemble des questions, contenant à la fois
@@ -23,10 +24,13 @@ type QuizState = {
 // un fetch à la DB selon si la réponse est correcte ou non.
 // !! la question est pour l'instant hardcodée, il faudra la passer en props plus tard
 const QuizWrapper = () => {
+  // !! Hardcodé pour l'instant
+  const numberOfQuestions = 5;
   const [quizState, setQuizState] = useState<QuizState>({
     isAnswered: false,
     answerIndex: -1,
     questionIndex: 0,
+    score: 0,
   });
   const [question, setQuestion] = useState<Question>(getNextQuestion(0));
   useEffect(() => {
@@ -50,7 +54,14 @@ const QuizWrapper = () => {
           <VerifiedButton
             setVerified={() => {
               if (quizState.answerIndex == -1) return;
-              setQuizState({ ...quizState, isAnswered: true });
+              setQuizState({
+                ...quizState,
+                isAnswered: true,
+                score:
+                  question.correctAnswer == quizState.answerIndex
+                    ? quizState.score + 1
+                    : quizState.score,
+              });
             }}
           />
         </>
@@ -71,6 +82,7 @@ const QuizWrapper = () => {
           <NextButton
             setNextQuestion={() => {
               setQuizState({
+                ...quizState,
                 isAnswered: false,
                 answerIndex: -1,
                 questionIndex: quizState.questionIndex + 1,
@@ -79,6 +91,9 @@ const QuizWrapper = () => {
           />
         </>
       )}
+      <div className="ml-auto mt-[-25px] text-[#4B4B4B] font-bold text-xl">
+        {quizState.questionIndex + 1}/{numberOfQuestions}
+      </div>
     </div>
   );
 };
