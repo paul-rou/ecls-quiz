@@ -14,6 +14,7 @@ type QuizState = {
   answerIndex: number;
   questionIndex: number;
   score: number;
+  isCompleted: Boolean;
 };
 
 // Pour l'instant, nous importons l'ensemble des questions, contenant à la fois
@@ -31,6 +32,7 @@ const QuizWrapper = () => {
     answerIndex: -1,
     questionIndex: 0,
     score: 0,
+    isCompleted: false,
   });
   const [question, setQuestion] = useState<Question>(getNextQuestion(0));
   useEffect(() => {
@@ -86,6 +88,7 @@ const QuizWrapper = () => {
                 isAnswered: false,
                 answerIndex: -1,
                 questionIndex: quizState.questionIndex + 1,
+                isCompleted: quizState.questionIndex + 2 == numberOfQuestions,
               });
             }}
           />
