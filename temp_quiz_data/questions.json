@@ -1,0 +1,27 @@
+{
+    "questions":
+    [
+        {
+            "question": "Quel pays a été le premier à criminaliser le viol conjugal en adoptant une loi en 1979 ?",
+            "answers": ["La France", "La Suède", "Les Etats Unis", "Le Royaume Uni"],
+            "correctAnswer": 1,
+            "description": "La Suède a été le premier pays à criminaliser le viol conjugal en 1979. La France a suivi en 1990, les Etats Unis en 1993 et le Royaume Uni en 1994.",
+            "source": "https://fr.wikipedia.org/wiki/Viol_conjugal"
+        },
+        {
+            "question": "Quelle convention internationale a été adoptée en 2011 et vise à combattre la violence et le harcèlement au travail, y compris le sexisme ?",
+            "answers": ["Convention de Genève", "Convention de l'OIT sur la violence et le harcèlement (n° 190)", "Convention de Rome", "Convention de Kyoto"],
+            "correctAnswer": 1,
+            "description": "La Convention de l'OIT sur la violence et le harcèlement au travail a été adoptée en 2011 pour lutter contre ces problèmes, y compris le sexisme.",
+            "source": "https://www.ilo.org/ilc/ILCSessions/108/media-centre/news/WCMS_711351/lang--fr/index.htm"
+        },
+        {
+            "question": "Quelle disposition légale en France permet aux victimes de violences conjugales d'obtenir une ordonnance de protection ?",
+            "answers": ["Loi Clément", "Loi Badinter", "Loi Schiappa", "Loi du 9 juillet 2010"],
+            "correctAnswer": 3,
+            "description": "La loi du 9 juillet 2010 en France a introduit l'ordonnance de protection pour les victimes de violences conjugales.",
+            "source": "https://www.legifrance.gouv.fr/loda/id/JORFTEXT000022454032/"
+        }
+    ]
+    
+}
