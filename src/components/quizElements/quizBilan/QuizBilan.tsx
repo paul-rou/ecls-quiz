@@ -1,20 +1,23 @@
+import EndButton from "../endButton/EndButton";
 import BilanCard from "./bilanCard/BilanCard";
 import ThemeCard from "@/components/themeCard/ThemeCard";
 
 interface Props {
   score: number;
-  nbQuestions: number;
+  numberOfQuestions: number;
   xpGained: number;
   themeName: string;
   themeLogo: string;
+  setEndQuiz: () => void;
 }
 
 const QuizBilan = ({
   score,
-  nbQuestions,
+  numberOfQuestions,
   xpGained,
   themeName,
   themeLogo,
+  setEndQuiz,
 }: Props) => {
   return (
     <div className="flex flex-col mt-5 items-center text-center [font-family:'Inter-Bold', Helvetica] space-y-10">
@@ -23,11 +26,11 @@ const QuizBilan = ({
       <div className="flex flex-row lg:space-x-48 md:space-x-24 space-x-5">
         <BilanCard
           type="score"
-          content={`Bonnes réponses : ${score}/${nbQuestions}`}
+          content={`Bonnes réponses : ${score}/${numberOfQuestions}`}
         />
         <BilanCard type="xp" content={`Expérience obtenue : ${xpGained}`} />
       </div>
-      {/*Ajouter un NextButton pour utiliser les states de QuizWrapper*/}
+      <EndButton setEndQuiz={() => setEndQuiz()} />
     </div>
   );
 };

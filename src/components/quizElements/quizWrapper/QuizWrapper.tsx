@@ -8,6 +8,8 @@ import QuizAnswerDescription from "../quiAnswerDescription/QuizAnswerDescription
 import { Question } from "@/types/quizTypes";
 import NextButton from "../nextButton/NextButton";
 import getNextQuestion from "@/lib/dummyScript";
+import QuizBilan from "../quizBilan/QuizBilan";
+import vieFamiliale from "../../../../public/theme-svg/vie-familiale.svg";
 
 type QuizState = {
   isAnswered: Boolean;
@@ -44,7 +46,24 @@ const QuizWrapper = () => {
       <h1 className="text-[#4B4B4B] font-bold text-xl my-10">
         {question.question}
       </h1>
-      {!quizState.isAnswered ? (
+      {quizState.isCompleted ? (
+        <QuizBilan
+          score={quizState.score}
+          numberOfQuestions={numberOfQuestions}
+          xpGained={15}
+          themeName={"Vie Familiale"}
+          themeLogo={vieFamiliale}
+          setEndQuiz={() => {
+            setQuizState({
+              isAnswered: false,
+              answerIndex: -1,
+              questionIndex: 0,
+              score: 0,
+              isCompleted: false,
+            });
+          }}
+        />
+      ) : !quizState.isAnswered ? (
         <>
           <QuizAnswerWrapper
             answers={question.answers}
@@ -88,14 +107,15 @@ const QuizWrapper = () => {
                 isAnswered: false,
                 answerIndex: -1,
                 questionIndex: quizState.questionIndex + 1,
-                isCompleted: quizState.questionIndex + 2 == numberOfQuestions,
+                isCompleted: quizState.questionIndex + 1 == numberOfQuestions,
               });
             }}
           />
         </>
       )}
       <div className="ml-auto mt-[-25px] text-[#4B4B4B] font-bold text-xl">
-        {quizState.questionIndex + 1}/{numberOfQuestions}
+        {Math.min(quizState.questionIndex + 1, numberOfQuestions)}/
+        {numberOfQuestions}
       </div>
     </div>
   );
