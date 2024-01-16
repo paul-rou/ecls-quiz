@@ -8,11 +8,15 @@ import QuizAnswerDescription from "../quiAnswerDescription/QuizAnswerDescription
 import { Question } from "@/types/quizTypes";
 import NextButton from "../nextButton/NextButton";
 import getNextQuestion from "@/lib/dummyScript";
+import QuizBilan from "../quizBilan/QuizBilan";
+import vieFamiliale from "../../../../public/theme-svg/vie-familiale.svg";
 
 type QuizState = {
   isAnswered: Boolean;
   answerIndex: number;
   questionIndex: number;
+  score: number;
+  isCompleted: Boolean;
 };
 
 // Pour l'instant, nous importons l'ensemble des questions, contenant à la fois
@@ -23,10 +27,14 @@ type QuizState = {
 // un fetch à la DB selon si la réponse est correcte ou non.
 // !! la question est pour l'instant hardcodée, il faudra la passer en props plus tard
 const QuizWrapper = () => {
+  // !! Hardcodé pour l'instant
+  const numberOfQuestions = 5;
   const [quizState, setQuizState] = useState<QuizState>({
     isAnswered: false,
     answerIndex: -1,
     questionIndex: 0,
+    score: 0,
+    isCompleted: false,
   });
   const [question, setQuestion] = useState<Question>(getNextQuestion(0));
   useEffect(() => {
@@ -38,7 +46,24 @@ const QuizWrapper = () => {
       <h1 className="text-[#4B4B4B] font-bold text-xl my-10">
         {question.question}
       </h1>
-      {!quizState.isAnswered ? (
+      {quizState.isCompleted ? (
+        <QuizBilan
+          score={quizState.score}
+          numberOfQuestions={numberOfQuestions}
+          xpGained={15}
+          themeName={"Vie Familiale"}
+          themeLogo={vieFamiliale}
+          setEndQuiz={() => {
+            setQuizState({
+              isAnswered: false,
+              answerIndex: -1,
+              questionIndex: 0,
+              score: 0,
+              isCompleted: false,
+            });
+          }}
+        />
+      ) : !quizState.isAnswered ? (
         <>
           <QuizAnswerWrapper
             answers={question.answers}
@@ -50,7 +75,14 @@ const QuizWrapper = () => {
           <VerifiedButton
             setVerified={() => {
               if (quizState.answerIndex == -1) return;
-              setQuizState({ ...quizState, isAnswered: true });
+              setQuizState({
+                ...quizState,
+                isAnswered: true,
+                score:
+                  question.correctAnswer == quizState.answerIndex
+                    ? quizState.score + 1
+                    : quizState.score,
+              });
             }}
           />
         </>
@@ -71,14 +103,20 @@ const QuizWrapper = () => {
           <NextButton
             setNextQuestion={() => {
               setQuizState({
+                ...quizState,
                 isAnswered: false,
                 answerIndex: -1,
                 questionIndex: quizState.questionIndex + 1,
+                isCompleted: quizState.questionIndex + 1 == numberOfQuestions,
               });
             }}
           />
         </>
       )}
+      <div className="ml-auto mt-[-25px] text-[#4B4B4B] font-bold text-xl">
+        {Math.min(quizState.questionIndex + 1, numberOfQuestions)}/
+        {numberOfQuestions}
+      </div>
     </div>
   );
 };
