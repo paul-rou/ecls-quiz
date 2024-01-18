@@ -43,9 +43,13 @@ const QuizWrapper = () => {
   }, [quizState.questionIndex]);
   return (
     <div className="flex flex-col items-center text-center mx-20">
-      <h1 className="text-[#4B4B4B] font-bold text-xl my-10">
-        {question.question}
-      </h1>
+      {!quizState.isCompleted ? (
+        <h1 className="text-[#4B4B4B] font-bold text-xl my-10">
+          {question.question}
+        </h1>
+      ) : (
+        <></>
+      )}
       {quizState.isCompleted ? (
         <QuizBilan
           score={quizState.score}
