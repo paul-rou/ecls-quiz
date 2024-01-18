@@ -4,7 +4,7 @@ import EclsLogo from "../../../public/logo-ecls.png";
 import UserLogo from "../../../public/user-logo.svg";
 import ParameterLogo from "../../../public/parameter-logo.svg";
 import ThemeCard from "../themeCard/ThemeCard";
-import vieFamiliale from "../../../public/theme-svg/vie-familiale.svg";
+import droit from "../../../public/theme-svg/droit.svg";
 
 // !! Pour l'instant le svg est hardcodé, mais il faudra le passer en props plus tard
 const NavBar = () => {
@@ -18,8 +18,8 @@ const NavBar = () => {
           height={100}
         />
       </Link>
-      <ThemeCard themeName="VIE FAMILIALE" themeLogo={vieFamiliale} />
-      <div className="flex gap-4">
+      <ThemeCard themeName="DROIT" themeLogo={droit} />
+      {/*<div className="flex gap-4">
         <div className="flex justify-center items-center w-[75px] h-[75px] rounded-full bg-[#C7E5C4]">
           <Link href="/">
             <Image
@@ -41,7 +41,7 @@ const NavBar = () => {
             />
           </Link>
         </div>
-      </div>
+  </div>*/}
     </nav>
   );
 };

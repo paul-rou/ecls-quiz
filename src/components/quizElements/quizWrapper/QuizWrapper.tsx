@@ -9,7 +9,7 @@ import { Question } from "@/types/quizTypes";
 import NextButton from "../nextButton/NextButton";
 import getNextQuestion from "@/lib/dummyScript";
 import QuizBilan from "../quizBilan/QuizBilan";
-import vieFamiliale from "../../../../public/theme-svg/vie-familiale.svg";
+import droit from "../../../../public/theme-svg/droit.svg";
 
 type QuizState = {
   isAnswered: Boolean;
@@ -51,8 +51,8 @@ const QuizWrapper = () => {
           score={quizState.score}
           numberOfQuestions={numberOfQuestions}
           xpGained={15}
-          themeName={"Vie Familiale"}
-          themeLogo={vieFamiliale}
+          themeName={"Droit"}
+          themeLogo={droit}
           setEndQuiz={() => {
             setQuizState({
               isAnswered: false,
