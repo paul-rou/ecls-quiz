@@ -97,6 +97,11 @@ const QuizWrapper = () => {
             }
           />
           <QuizAnswerDescription
+            wrongAnswer={
+              question.correctAnswer == quizState.answerIndex
+                ? ""
+                : question.answers[quizState.answerIndex]
+            }
             description={question.description}
             sourceLink={question.source}
           />
