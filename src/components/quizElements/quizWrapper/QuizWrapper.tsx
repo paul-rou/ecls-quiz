@@ -50,7 +50,11 @@ const QuizWrapper = () => {
         <QuizBilan
           score={quizState.score}
           numberOfQuestions={numberOfQuestions}
-          xpGained={15}
+          xpGained={
+            quizState.score === numberOfQuestions
+              ? 5 * quizState.score
+              : 4 * quizState.score
+          }
           themeName={"Droit"}
           themeLogo={droit}
           setEndQuiz={() => {
