@@ -3,7 +3,7 @@ import verifiedIcon from "../../../../public/verified-logo.svg";
 
 const VerifiedButton = ({ setVerified }: { setVerified: () => void }) => {
   return (
-    <div className="h-[60px] w-[300px] mt-4 bg-[#DDBAFF] text-center rounded-3xl">
+    <div className="h-[60px] w-[300px] mt-4 bg-[#DDBAFF] text-center rounded-3xl hover:bg-[#BB98DD]">
       <button
         onClick={() => setVerified()}
         className="flex items-center justify-center w-full h-full"
