@@ -7,9 +7,11 @@ import espacePublic from "../../../public/theme-svg/espace-public.svg";
 import droit from "../../../public/theme-svg/droit.svg";
 import artsCulture from "../../../public/theme-svg/arts-culture.svg";
 import autresThemes from "../../../public/theme-svg/autres-themes.svg";
+import allThemes from "../../../public/theme-svg/allThemes.svg";
 
 import MapChoiceCard from "./mapChoiceCard/MapChoiceCard";
 import { useState } from "react";
+import MapChoiceButton from "./mapChoiceButton/MapChoiceButton";
 
 const MapChoice = () => {
   const [selectedAnswer, setSelectedAnswer] = useState<number | undefined>();
@@ -50,6 +52,12 @@ const MapChoice = () => {
       content: "Autre",
       altLogo: "3-dot Icon",
       themeLogo: autresThemes,
+      position: "mid",
+    },
+    {
+      content: "Tous les thèmes (aléatoire)",
+      altLogo: "Folder",
+      themeLogo: allThemes,
       position: "bot",
     },
   ];
@@ -71,6 +79,14 @@ const MapChoice = () => {
           isSelected={selectedAnswer === index}
         />
       ))}
+
+      {selectedAnswer === undefined ? (
+        <MapChoiceButton />
+      ) : (
+        <Link href={`/quiz?theme=${selectedAnswer}`}>
+          <MapChoiceButton />
+        </Link>
+      )}
     </div>
   );
 };
