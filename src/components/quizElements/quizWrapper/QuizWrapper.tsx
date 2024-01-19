@@ -26,7 +26,13 @@ type QuizState = {
 // créer une fonction prenant en paramètre la réponse choisie, elle retournerait un booléen via
 // un fetch à la DB selon si la réponse est correcte ou non.
 // !! la question est pour l'instant hardcodée, il faudra la passer en props plus tard
-const QuizWrapper = () => {
+const QuizWrapper = ({
+  themeName,
+  themeLogo,
+}: {
+  themeName?: string;
+  themeLogo?: string;
+}) => {
   // !! Hardcodé pour l'instant
   const numberOfQuestions = 5;
   const [quizState, setQuizState] = useState<QuizState>({

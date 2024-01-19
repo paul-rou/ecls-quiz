@@ -7,7 +7,13 @@ import ThemeCard from "../themeCard/ThemeCard";
 import droit from "../../../public/theme-svg/droit.svg";
 
 // !! Pour l'instant le svg est hardcodé, mais il faudra le passer en props plus tard
-const NavBar = () => {
+const NavBar = ({
+  themeName,
+  themeLogo,
+}: {
+  themeName?: string;
+  themeLogo?: string;
+}) => {
   return (
     <nav className="flex justify-around items-center w-full pt-1 pb-2 bg-[#0E956D] border-b-[10px] border-[#A5CE87]">
       <Link href="/">
@@ -18,7 +24,10 @@ const NavBar = () => {
           height={100}
         />
       </Link>
-      <ThemeCard themeName="DROIT" themeLogo={droit} />
+      {themeName !== undefined && themeLogo !== undefined && (
+        <ThemeCard themeName={themeName} themeLogo={themeLogo} />
+      )}
+
       {/*<div className="flex gap-4">
         <div className="flex justify-center items-center w-[75px] h-[75px] rounded-full bg-[#C7E5C4]">
           <Link href="/">

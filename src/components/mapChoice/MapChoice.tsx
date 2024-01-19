@@ -20,43 +20,43 @@ const MapChoice = () => {
   const mapChoices = [
     {
       content: "Inégalités au travail",
-      altLogo: "Briefcase",
+      altLogo: "inegaliteTravail",
       themeLogo: inegaliteTravail,
       position: "top",
     },
     {
       content: "Arts & Culture",
-      altLogo: "Music Note",
+      altLogo: "artsCulture",
       themeLogo: artsCulture,
       position: "mid",
     },
     {
       content: "Droit",
-      altLogo: "Document",
+      altLogo: "droit",
       themeLogo: droit,
       position: "mid",
     },
     {
       content: "Vie familiale",
-      altLogo: "House",
+      altLogo: "vieFamiliale",
       themeLogo: vieFamiliale,
       position: "mid",
     },
     {
       content: "Espace public",
-      altLogo: "Speech Bubble",
+      altLogo: "espacePublic",
       themeLogo: espacePublic,
       position: "mid",
     },
     {
       content: "Autre",
-      altLogo: "3-dot Icon",
+      altLogo: "autresThemes",
       themeLogo: autresThemes,
       position: "mid",
     },
     {
       content: "Tous les thèmes (aléatoire)",
-      altLogo: "Folder",
+      altLogo: "allThemes",
       themeLogo: allThemes,
       position: "bot",
     },
@@ -83,7 +83,11 @@ const MapChoice = () => {
       {selectedAnswer === undefined ? (
         <MapChoiceButton />
       ) : (
-        <Link href={`/quiz?theme=${selectedAnswer}`}>
+        <Link
+          href={`/quiz?theme=${encodeURIComponent(
+            mapChoices[selectedAnswer].altLogo
+          )}`}
+        >
           <MapChoiceButton />
         </Link>
       )}
