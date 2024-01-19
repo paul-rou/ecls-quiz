@@ -4,7 +4,6 @@ import EclsLogo from "../../../public/logo-ecls.png";
 import UserLogo from "../../../public/user-logo.svg";
 import ParameterLogo from "../../../public/parameter-logo.svg";
 import ThemeCard from "../themeCard/ThemeCard";
-import droit from "../../../public/theme-svg/droit.svg";
 
 // !! Pour l'instant le svg est hardcodé, mais il faudra le passer en props plus tard
 const NavBar = ({

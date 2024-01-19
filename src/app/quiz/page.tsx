@@ -15,12 +15,12 @@ export default function Home() {
   // Retrieve the svg linked and name linked to this theme
   const themeInfo = getThemeInfoByAltLogo(`${theme}`);
   const themeLogo = themeInfo?.themeLogo;
-  const themeContent = themeInfo?.name;
+  const themeName = themeInfo?.name;
 
   return (
     <>
-      <NavBar themeLogo={themeLogo} themeName={themeContent} />
-      <QuizWrapper themeLogo={themeLogo} themeName={themeContent} />
+      <NavBar themeLogo={themeLogo} themeName={themeName} />
+      <QuizWrapper themeLogo={themeLogo} themeName={themeName} />
     </>
   );
 }

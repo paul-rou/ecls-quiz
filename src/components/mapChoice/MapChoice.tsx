@@ -14,7 +14,7 @@ import { useState } from "react";
 import MapChoiceButton from "./mapChoiceButton/MapChoiceButton";
 
 const MapChoice = () => {
-  const [selectedAnswer, setSelectedAnswer] = useState<number | undefined>();
+  const [selectedMap, setselectedMap] = useState<number | undefined>();
 
   // Array holding information for each MapChoiceCard
   const mapChoices = [
@@ -75,17 +75,17 @@ const MapChoice = () => {
           altLogo={choice.altLogo}
           themeLogo={choice.themeLogo}
           position={choice.position}
-          setSelected={() => setSelectedAnswer(index)}
-          isSelected={selectedAnswer === index}
+          setSelected={() => setselectedMap(index)}
+          isSelected={selectedMap === index}
         />
       ))}
 
-      {selectedAnswer === undefined ? (
+      {selectedMap === undefined ? (
         <MapChoiceButton />
       ) : (
         <Link
           href={`/quiz?theme=${encodeURIComponent(
-            mapChoices[selectedAnswer].altLogo
+            mapChoices[selectedMap].altLogo
           )}`}
         >
           <MapChoiceButton />
