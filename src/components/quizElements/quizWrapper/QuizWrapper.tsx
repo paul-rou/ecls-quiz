@@ -40,10 +40,22 @@ const QuizWrapper = () => {
   const [questions, setQuestions] = useState<Question[]>([]);
 
   useEffect(() => {
-    getRecords("Droit", numberOfQuestions).then((records: Question[]) => {
-      console.log(records);
-      setQuestions(records);
+    const params = new URLSearchParams({
+      themeName: "Droit",
+      numberOfQuestions: String(numberOfQuestions),
     });
+
+    fetch(`/api/airtable?${params}`, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    })
+      .then((res) => res.json())
+      .then((records: Question[]) => {
+        console.log(records);
+        setQuestions(records);
+      });
   }, []);
 
   useEffect(() => {
