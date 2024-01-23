@@ -36,8 +36,8 @@ const MapChoiceCard = ({
         }`}
       >
         <div
-          className={`absolute w-[394px] h-[74px] ${roundedClass} border-t-2 [border-top-style:solid] border-r-2 [border-right-style:solid] border-l-2 [border-left-style:solid] 
-          border-b-2 [border-bottom-style:solid] 
+          className={`absolute w-[394px] h-[74px] ${roundedClass} border-t-2 border-t-solid border-r-2 border-r-solid border-l-2 border-l-solid 
+          border-b-2 border-b-solid 
           ${
             isSelected
               ? "bg-gray-100 border-sky-900"
@@ -52,7 +52,7 @@ const MapChoiceCard = ({
             height={32}
             className="mr-1"
           />
-          <div className="relative w-fit [font-family:'Inter-Bold', Helvetica] font-bold text-[#4b4b4b] text-[15px] tracking-wide leading-[20px] whitespace-nowrap">
+          <div className="relative w-fit font-bold text-[#4b4b4b] text-[15px] tracking-wide leading-[20px] whitespace-nowrap">
             {content}
           </div>
         </div>
