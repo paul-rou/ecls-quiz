@@ -18,7 +18,7 @@ export const getRecords = async (themeName: string, numberOfQuestions: number) =
 
   const records = await new Promise((resolve, reject)=>table.select({
     maxRecords: numberOfQuestions,
-    filterByFormula: `{Thématiques} = '${themeName}'`,
+    filterByFormula: themeName!=="random" ? `AND({Thématiques} = '${themeName}', {Format de la question} = 'QCM')` : `{Format de la question} = 'QCM'`,
     fields: ["Intitulé de la question", "# réponse vraie QCM", "Réponse 1 - QCM", "Réponse 2 - QCM", "Réponse 3 - QCM", "Réponse 4 - QCM", "Infos complémentaires lien", "Infos sup. réponse 1", "Infos sup. réponse 2", "Infos sup. réponse 3", "Infos sup. réponse 4"]
   }).eachPage(
     function (records: any, fetchNextPage: any) {

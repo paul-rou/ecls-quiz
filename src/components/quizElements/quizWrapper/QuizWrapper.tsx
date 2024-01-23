@@ -9,7 +9,6 @@ import { Question } from "@/types/quizTypes";
 import NextButton from "../nextButton/NextButton";
 import QuizBilan from "../quizBilan/QuizBilan";
 import droit from "../../../../public/theme-svg/droit.svg";
-import { getRecords } from "@/lib/airtableQueries";
 
 type QuizState = {
   isAnswered: Boolean;
@@ -34,7 +33,7 @@ const QuizWrapper = ({
   themeLogo?: string;
 }) => {
   // !! Hardcodé pour l'instant
-  const numberOfQuestions = 5;
+  const [numberOfQuestions, setNumberOfQuestions] = useState<number>(5);
   const [quizState, setQuizState] = useState<QuizState>({
     isAnswered: false,
     answerIndex: -1,
@@ -47,7 +46,7 @@ const QuizWrapper = ({
 
   useEffect(() => {
     const params = new URLSearchParams({
-      themeName: "Droit",
+      themeName: themeName ?? "Droit",
       numberOfQuestions: String(numberOfQuestions),
     });
 
@@ -59,8 +58,10 @@ const QuizWrapper = ({
     })
       .then((res) => res.json())
       .then((records: Question[]) => {
-        console.log(records);
         setQuestions(records);
+        if (records.length < numberOfQuestions) {
+          setNumberOfQuestions(records.length);
+        }
       });
   }, []);
 
@@ -95,16 +96,16 @@ const QuizWrapper = ({
               ? 5 * quizState.score
               : 4 * quizState.score
           }
-          themeName={"Droit"}
-          themeLogo={droit}
+          themeName={themeName ?? "Droit"}
+          themeLogo={themeLogo ?? droit}
           setEndQuiz={() => {
-            setQuizState({
+            /*             setQuizState({
               isAnswered: false,
               answerIndex: -1,
               questionIndex: 0,
               score: 0,
               isCompleted: false,
-            });
+            }); */
           }}
         />
       ) : !quizState.isAnswered ? (
