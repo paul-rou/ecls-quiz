@@ -7,9 +7,9 @@ import QuizAnswerResult from "../quizAnswerResult/QuizAnswerResult";
 import QuizAnswerDescription from "../quiAnswerDescription/QuizAnswerDescription";
 import { Question } from "@/types/quizTypes";
 import NextButton from "../nextButton/NextButton";
-import getNextQuestion from "@/lib/dummyScript";
 import QuizBilan from "../quizBilan/QuizBilan";
 import droit from "../../../../public/theme-svg/droit.svg";
+import { getRecords } from "@/lib/airtableQueries";
 
 type QuizState = {
   isAnswered: Boolean;
@@ -42,11 +42,41 @@ const QuizWrapper = ({
     score: 0,
     isCompleted: false,
   });
-  const [question, setQuestion] = useState<Question>(getNextQuestion(0));
+  const [question, setQuestion] = useState<Question>();
+  const [questions, setQuestions] = useState<Question[]>([]);
+
   useEffect(() => {
-    const nextQuestion = getNextQuestion(quizState.questionIndex);
-    setQuestion(nextQuestion);
-  }, [quizState.questionIndex]);
+    const params = new URLSearchParams({
+      themeName: "Droit",
+      numberOfQuestions: String(numberOfQuestions),
+    });
+
+    fetch(`/api/airtable?${params}`, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    })
+      .then((res) => res.json())
+      .then((records: Question[]) => {
+        console.log(records);
+        setQuestions(records);
+      });
+  }, []);
+
+  useEffect(() => {
+    if (questions && quizState.questionIndex < numberOfQuestions) {
+      const nextQuestion = questions[quizState.questionIndex];
+      setQuestion(nextQuestion);
+    }
+  }, [quizState.questionIndex, questions]);
+
+  if (!question)
+    return (
+      <p className="m-4 text-[#4B4B4B] font-bold text-xl">
+        Chargement du quiz...
+      </p>
+    );
   return (
     <div className="flex flex-col items-center text-center mx-20">
       {!quizState.isCompleted ? (

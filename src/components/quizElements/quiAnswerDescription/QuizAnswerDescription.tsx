@@ -10,21 +10,28 @@ const QuizAnswerDescription = ({
   wrongAnswer: string;
 }) => {
   const isRight = wrongAnswer == "";
-  const parsedUrl = new URL(sourceLink);
-  const domain = parsedUrl.hostname;
+  let domain: string = "";
+  if (sourceLink) {
+    const parsedUrl = new URL(sourceLink);
+    domain = parsedUrl.hostname;
+  }
   return (
     <div className="mt-6 flex flex-col bg-[#EDEDED] p-4">
       <p className="font-bold">
         {isRight ? "Bonne réponse" : "Mauvaise réponse"}
       </p>
       <p>{description}</p>
-      <Link
-        href={sourceLink}
-        target="_blank"
-        className="mt-4 font-bold text-[#0D84AAD9]"
-      >
-        Source : {domain}
-      </Link>
+      {domain ? (
+        <Link
+          href={sourceLink}
+          target="_blank"
+          className="mt-4 font-bold text-[#0D84AAD9]"
+        >
+          Source : {domain}
+        </Link>
+      ) : (
+        <></>
+      )}
     </div>
   );
 };
