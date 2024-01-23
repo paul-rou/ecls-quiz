@@ -1,3 +1,4 @@
+import Link from "next/link";
 import EndButton from "../endButton/EndButton";
 import BilanCard from "./bilanCard/BilanCard";
 import ThemeCard from "@/components/themeCard/ThemeCard";
@@ -30,7 +31,9 @@ const QuizBilan = ({
         />
         <BilanCard type="xp" content={`Expérience obtenue : ${xpGained}`} />
       </div>
-      <EndButton setEndQuiz={() => setEndQuiz()} />
+      <Link href="/home">
+        <EndButton setEndQuiz={() => setEndQuiz()} />
+      </Link>
     </div>
   );
 };

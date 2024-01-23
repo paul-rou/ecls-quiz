@@ -1,6 +1,5 @@
 import React from "react";
 import Link from "next/link";
-import Image from "next/image";
 import inegaliteTravail from "../../../public/theme-svg/inegalite-travail.svg";
 import vieFamiliale from "../../../public/theme-svg/vie-familiale.svg";
 import espacePublic from "../../../public/theme-svg/espace-public.svg";
