@@ -10,7 +10,7 @@ const QuizAnswerCard = ({
   isRight: boolean;
 }) => {
   return (
-    <div className="flex gap-2">
+    <div className="flex gap-2 mx-auto">
       <Image
         src={isRight ? rightIcon : wrongIcon}
         alt="icon vrai ou faux"
@@ -18,7 +18,7 @@ const QuizAnswerCard = ({
         height={50}
       />
       <div
-        className={`flex h-28 px-4 justify-center items-center text-center bg-[#FFF]
+        className={`flex py-5 px-4 justify-center items-center text-center bg-[#FFF]
         ${
           isRight ? "border-[#C4FD7C]" : "border-[#FF938C]"
         } border-[12px] rounded-xl select-none`}

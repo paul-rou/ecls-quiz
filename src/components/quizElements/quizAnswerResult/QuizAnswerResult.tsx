@@ -9,7 +9,7 @@ const QuizAnswerResult = ({
 }) => {
   const isRight = wrongAnswer == "";
   return (
-    <div className={`flex gap-8`}>
+    <div className={`flex md:flex-row flex-col w-full md:gap-8 gap-4`}>
       <QuizAnswerCard answerContent={rightAnswer} isRight />
       {!isRight ? (
         <QuizAnswerCard answerContent={wrongAnswer} isRight={false} />

@@ -10,7 +10,7 @@ const QuizCard = ({
   return (
     <button
       onClick={() => setSelected()}
-      className={`flex h-40 justify-center items-center text-center bg-[#FFF]
+      className={`flex h-[200px] justify-center items-center text-center bg-[#FFF]
       ${
         selected ? "border-[#84D8FF] border-[5px]" : "border-[#E5E5E5]"
       } hover:bg-[#f1f1f1] border-[2px] rounded-xl shadow-0.5sm select-none`}

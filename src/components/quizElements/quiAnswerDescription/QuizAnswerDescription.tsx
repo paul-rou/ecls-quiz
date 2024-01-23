@@ -16,7 +16,7 @@ const QuizAnswerDescription = ({
     domain = parsedUrl.hostname;
   }
   return (
-    <div className="mt-6 flex flex-col bg-[#EDEDED] p-4">
+    <div className="mt-6 mx-2 flex flex-col bg-[#EDEDED] p-4">
       <p className="font-bold">
         {isRight ? "Bonne réponse" : "Mauvaise réponse"}
       </p>
