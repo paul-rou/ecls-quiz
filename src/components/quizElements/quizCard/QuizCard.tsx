@@ -15,7 +15,9 @@ const QuizCard = ({
         selected ? "border-[#84D8FF] border-[5px]" : "border-[#E5E5E5]"
       } hover:bg-[#f1f1f1] border-[2px] rounded-xl shadow-0.5sm select-none`}
     >
-      <p className="text-[#4B4B4B] font-bold text-xl">{answerContent}</p>
+      <p className="text-[#4B4B4B] font-bold md:text-xl text-lg">
+        {answerContent}
+      </p>
     </button>
   );
 };
