@@ -26,9 +26,11 @@ type QuizState = {
 // un fetch à la DB selon si la réponse est correcte ou non.
 // !! la question est pour l'instant hardcodée, il faudra la passer en props plus tard
 const QuizWrapper = ({
+  themeNameToShow,
   themeName,
   themeLogo,
 }: {
+  themeNameToShow?: string;
   themeName?: string;
   themeLogo?: string;
 }) => {
@@ -96,7 +98,7 @@ const QuizWrapper = ({
               ? 5 * quizState.score
               : 4 * quizState.score
           }
-          themeName={themeName ?? "Droit"}
+          themeName={themeNameToShow ?? "Droit"}
           themeLogo={themeLogo ?? droit}
           setEndQuiz={() => {
             /*             setQuizState({

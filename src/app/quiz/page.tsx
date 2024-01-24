@@ -18,7 +18,11 @@ export default function Home() {
   return (
     <>
       <NavBar themeLogo={themeLogo} themeName={themeNameToShow} />
-      <QuizWrapper themeLogo={themeLogo} themeName={themeName} />
+      <QuizWrapper
+        themeNameToShow={themeNameToShow}
+        themeLogo={themeLogo}
+        themeName={themeName}
+      />
     </>
   );
 }
