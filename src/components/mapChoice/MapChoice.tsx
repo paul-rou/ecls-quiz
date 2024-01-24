@@ -63,7 +63,7 @@ const MapChoice = () => {
 
   return (
     <div className="flex flex-col items-center text-center mx-20">
-      <h1 className="text-[#4B4B4B] font-bold text-xl my-10">
+      <h1 className="text-[#4B4B4B] font-bold text-xl md:my-10 my-4">
         Sur quelle section désirez-vous jouer ?
       </h1>
 

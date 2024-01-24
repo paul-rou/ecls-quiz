@@ -81,7 +81,7 @@ const QuizWrapper = ({
   return (
     <div className="flex flex-col items-center text-center md:mx-20 mx-3">
       {!quizState.isCompleted ? (
-        <h1 className="text-[#4B4B4B] font-bold md:text-xl text-lg md:my-10 mt-3 mb-2">
+        <h1 className="text-[#4B4B4B] font-bold md:text-xl text-lg md:my-10 my-4">
           {question.question}
         </h1>
       ) : (
