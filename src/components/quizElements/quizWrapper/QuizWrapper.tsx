@@ -24,7 +24,6 @@ type QuizState = {
 // Une bonne approche dans un second temps serait de ne fetch que les réponses et de
 // créer une fonction prenant en paramètre la réponse choisie, elle retournerait un booléen via
 // un fetch à la DB selon si la réponse est correcte ou non.
-// !! la question est pour l'instant hardcodée, il faudra la passer en props plus tard
 const QuizWrapper = ({
   themeNameToShow,
   themeName,

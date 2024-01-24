@@ -15,6 +15,8 @@ import MapChoiceButton from "./mapChoiceButton/MapChoiceButton";
 const MapChoice = () => {
   const [selectedMap, setselectedMap] = useState<number | undefined>();
 
+  const isMobile = window.innerWidth <= 500;
+
   // Array holding information for each MapChoiceCard
   const mapChoices = [
     {
@@ -62,7 +64,7 @@ const MapChoice = () => {
   ];
 
   return (
-    <div className="flex flex-col items-center text-center mx-20">
+    <div className="flex flex-col items-center text-center md:mx-20 mx-2">
       <h1 className="text-[#4B4B4B] font-bold text-xl md:my-10 my-4">
         Sur quelle section désirez-vous jouer ?
       </h1>
@@ -70,6 +72,7 @@ const MapChoice = () => {
       {mapChoices.map((choice, index) => (
         <MapChoiceCard
           key={index}
+          isMobile={isMobile}
           content={choice.content}
           altLogo={choice.altLogo}
           themeLogo={choice.themeLogo}
@@ -79,7 +82,9 @@ const MapChoice = () => {
         />
       ))}
 
-      {selectedMap === undefined ? (
+      {isMobile ? (
+        <></>
+      ) : selectedMap === undefined ? (
         <MapChoiceButton />
       ) : (
         <Link
