@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Link from "next/link";
 import inegaliteTravail from "../../../public/theme-svg/inegalite-travail.svg";
 import vieFamiliale from "../../../public/theme-svg/vie-familiale.svg";
@@ -14,8 +14,11 @@ import MapChoiceButton from "./mapChoiceButton/MapChoiceButton";
 
 const MapChoice = () => {
   const [selectedMap, setselectedMap] = useState<number | undefined>();
+  const [isMobile, setIsMobile] = useState<boolean>(false);
 
-  const isMobile = window.innerWidth <= 500;
+  useEffect(() => {
+    setIsMobile(window.innerWidth <= 500);
+  }, []);
 
   // Array holding information for each MapChoiceCard
   const mapChoices = [
