@@ -31,7 +31,7 @@ const QuizBilan = ({
         />
         <BilanCard type="xp" content={`Expérience obtenue : ${xpGained}`} />
       </div>
-      <Link href="/home">
+      <Link href="/">
         <EndButton setEndQuiz={() => setEndQuiz()} />
       </Link>
     </div>
