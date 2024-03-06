@@ -2,7 +2,7 @@
 import QuizWrapper from "@/components/quizElements/quizWrapper/QuizWrapper";
 import NavBar from "@/components/navBar/NavBar";
 import { useSearchParams } from "next/navigation";
-import { getThemeInfoByAltLogo } from "../../../public/nameOfThemesList";
+import { getThemeInfoByAltLogo } from "../../lib/nameOfThemesList";
 
 export default function Home() {
   // Fetch the theme from the URL :
