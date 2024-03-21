@@ -1,9 +1,13 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { Inter, Atkinson_Hyperlegible } from "next/font/google";
 import "./globals.css";
 import { GoogleAnalytics } from "@next/third-parties/google";
 
 const inter = Inter({ subsets: ["latin"] });
+const atkinson = Atkinson_Hyperlegible({
+  weight: "700", // Choix entre "400" et "700" en fonction de la graisse souhaitée pour la police.
+  subsets: ["latin"],
+});
 
 export const metadata: Metadata = {
   title: "Quiz - Ensemble contre le sexisme",
@@ -17,7 +21,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={inter.className}>{children}</body>
+      <body>{children}</body>
       <GoogleAnalytics gaId="G-JF73GETG80" />
     </html>
   );

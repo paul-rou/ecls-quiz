@@ -4,6 +4,7 @@ import EclsLogo from "../../../public/logo-ecls.png";
 import UserLogo from "../../../public/user-logo.svg";
 import ParameterLogo from "../../../public/parameter-logo.svg";
 import ThemeCard from "../themeCard/ThemeCard";
+import SettingsButton from "../settingsButton/SettingsButton";
 
 // !! Pour l'instant le svg est hardcodé, mais il faudra le passer en props plus tard
 const NavBar = ({
@@ -24,11 +25,13 @@ const NavBar = ({
         />
       </Link>
       {themeName !== undefined && themeLogo !== undefined && (
-        <ThemeCard themeName={themeName} themeLogo={themeLogo} />
+        <div className="text-[15px]">
+          <ThemeCard themeName={themeName} themeLogo={themeLogo} />
+        </div>
       )}
 
-      {/*<div className="flex gap-4">
-        <div className="flex justify-center items-center w-[75px] h-[75px] rounded-full bg-[#C7E5C4]">
+      <div className="flex gap-4">
+        {/*<div className="flex justify-center items-center w-[75px] h-[75px] rounded-full bg-[#C7E5C4]">
           <Link href="/">
             <Image
               src={UserLogo}
@@ -38,18 +41,11 @@ const NavBar = ({
               className=""
             />
           </Link>
-        </div>
-        <div className="flex justify-center items-center w-[75px] h-[75px] rounded-full bg-[#C7E5C4]">
-          <Link href="/">
-            <Image
-              src={ParameterLogo}
-              alt="logo of the parameter button"
-              width={64}
-              height={64}
-            />
-          </Link>
-        </div>
-  </div>*/}
+      </div>*/}
+        <button className="flex justify-center items-center w-[75px] h-[75px] rounded-full bg-[#C7E5C4]">
+          <SettingsButton />
+        </button>
+      </div>
     </nav>
   );
 };
