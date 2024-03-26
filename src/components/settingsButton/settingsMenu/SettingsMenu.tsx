@@ -15,7 +15,7 @@ const settingsMenu = () => {
           </div>
           <div className="border-b py-2 text-[18px] text-center">
             <Link href="https://ensemblecontrelesexisme.org/">
-              Site de l'association
+              Site de l&apos;association
             </Link>
           </div>
         </div>
