@@ -7,7 +7,6 @@ const FontToggle = () => {
   });
 
   useEffect(() => {
-    // Update CSS variable and localStorage when font state changes
     document.documentElement.style.setProperty(
       "--font-family",
       font === "Inter"
@@ -15,7 +14,7 @@ const FontToggle = () => {
         : "'Atkinson Hyperlegible', Georgia, serif"
     );
     localStorage.setItem("selectedFont", font);
-  }, [font]); // Run this effect whenever 'font' state changes
+  }, [font]);
 
   const toggleFont = () => {
     setFont((prevFont) =>
@@ -24,12 +23,24 @@ const FontToggle = () => {
   };
 
   return (
-    <button
-      onClick={toggleFont}
-      className="border-b py-2 text-[18px] text-center bg-slate-220 rounded cursor-pointer"
-    >
-      {font === "Inter" ? "Lisibilité améliorée" : "Lisibilité classique"}
-    </button>
+    <div className="flex items-center">
+      <button
+        onClick={toggleFont}
+        className="border-b py-2 text-[18px] text-center bg-slate-220 rounded cursor-pointer mr-2"
+      >
+        Lisibilité améliorée
+      </button>
+      <div
+        className="w-10 h-4 bg-gray-300 rounded-full flex items-center p-1 cursor-pointer"
+        onClick={toggleFont}
+      >
+        <div
+          className={`w-3 h-3 rounded-full relative  ${
+            font === "Inter" ? "bg-red-500" : "bg-green-500 left-4"
+          }`}
+        />
+      </div>
+    </div>
   );
 };
 

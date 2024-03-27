@@ -51,7 +51,7 @@ const MapChoiceCard = ({
               height={32}
               className="mr-1"
             />
-            <div className="relative w-fit font-bold text-[#4b4b4b] text-[15px] tracking-wide leading-[20px] whitespace-nowrap">
+            <div className="relative w-fit font-bold text-[#4b4b4b] text-sm tracking-wide leading-[20px] whitespace-nowrap">
               {content}
             </div>
           </div>
