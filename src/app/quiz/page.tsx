@@ -17,7 +17,11 @@ export default function Home() {
 
   return (
     <>
-      <NavBar themeLogo={themeLogo} themeName={themeNameToShow} />
+      <NavBar
+        themeLogo={themeLogo}
+        themeName={themeNameToShow}
+        displayUserButton={false}
+      />
       <QuizWrapper
         themeNameToShow={themeNameToShow}
         themeLogo={themeLogo}
