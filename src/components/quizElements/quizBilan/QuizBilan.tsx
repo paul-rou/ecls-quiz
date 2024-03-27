@@ -2,6 +2,7 @@ import Link from "next/link";
 import EndButton from "../endButton/EndButton";
 import BilanCard from "./bilanCard/BilanCard";
 import ThemeCard from "@/components/themeCard/ThemeCard";
+import { updateUserScore } from "@/lib/localStorageUserInteraction";
 
 interface Props {
   score: number;
@@ -32,7 +33,16 @@ const QuizBilan = ({
         <BilanCard type="xp" content={`Expérience obtenue : ${xpGained}`} />
       </div>
       <Link href="/">
-        <EndButton setEndQuiz={() => setEndQuiz()} />
+        <EndButton
+          setEndQuiz={() => {
+            updateUserScore(
+              String(xpGained),
+              String(score),
+              numberOfQuestions == score
+            );
+            setEndQuiz();
+          }}
+        />
       </Link>
     </div>
   );
