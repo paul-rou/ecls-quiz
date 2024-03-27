@@ -24,6 +24,7 @@ type QuizState = {
 // Une bonne approche dans un second temps serait de ne fetch que les réponses et de
 // créer une fonction prenant en paramètre la réponse choisie, elle retournerait un booléen via
 // un fetch à la DB selon si la réponse est correcte ou non.
+// Sinon, il faudrait chiffrer les réponses et les déchiffrer côté client au moment où l'on en a besoin
 const QuizWrapper = ({
   themeNameToShow,
   themeName,
@@ -51,15 +52,16 @@ const QuizWrapper = ({
       numberOfQuestions: String(numberOfQuestions),
     });
 
-    fetch(`/api/airtable?${params}`, {
+    fetch(`/api/baserow?${params}`, {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
       },
     })
-      .then((res) => res.json())
+      .then((res) => res.json()) // Add return here
       .then((records: Question[]) => {
         setQuestions(records);
+        console.log(records, "records");
         if (records.length < numberOfQuestions) {
           setNumberOfQuestions(records.length);
         }
