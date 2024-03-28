@@ -2,6 +2,8 @@ import Link from "next/link";
 import EndButton from "../endButton/EndButton";
 import BilanCard from "./bilanCard/BilanCard";
 import ThemeCard from "@/components/themeCard/ThemeCard";
+import { updateUserScore } from "@/lib/localStorageUserInteraction";
+import { useEffect, useState } from "react";
 
 interface Props {
   score: number;
@@ -20,6 +22,14 @@ const QuizBilan = ({
   themeLogo,
   setEndQuiz,
 }: Props) => {
+  // On est dans un cas de SSR, useEffect tourne côté client, localStorage est donc défini
+  useEffect(() => {
+    updateUserScore(
+      String(xpGained),
+      String(score),
+      numberOfQuestions == score
+    );
+  }, []);
   return (
     <div className="flex flex-col mt-5 items-center text-center [font-family:'Inter-Bold', Helvetica] space-y-10">
       <h1 className="text-[#4B4B4B] font-bold text-xl">Bilan de la session</h1>
@@ -32,7 +42,11 @@ const QuizBilan = ({
         <BilanCard type="xp" content={`Expérience obtenue : ${xpGained}`} />
       </div>
       <Link href="/">
-        <EndButton setEndQuiz={() => setEndQuiz()} />
+        <EndButton
+          setEndQuiz={() => {
+            setEndQuiz();
+          }}
+        />
       </Link>
     </div>
   );
