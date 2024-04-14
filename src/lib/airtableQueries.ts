@@ -13,12 +13,18 @@ const airtable: Airtable = new Airtable({ apiKey: AIRTABLE_API_KEY });
 const base = airtable.base(AIRTABLE_BASE_ID ?? "");
 const table = base(AIRTABLE_TABLE_ID ?? "");
 
-export const getRecords = async (themeName: string, numberOfQuestions: number) => {
+const difficultyMapping: any = {
+  "Facile": "1 - Facile",
+  "Moyen": "2 - Moyen",
+  "Difficile": "3 - Difficile",
+};
+
+export const getRecords = async (themeName: string, numberOfQuestions: number, difficulty: string) => {
   const questions: Question[] = [];
 
   const records = await new Promise((resolve, reject)=>table.select({
     maxRecords: numberOfQuestions,
-    filterByFormula: themeName!=="random" ? `{Thématiques} = '${themeName}'` : "",
+    filterByFormula: themeName!=="random" ? `AND({Thématiques} = '${themeName}', {Niveau de difficulté} = '${difficultyMapping[difficulty]}')` : "",
     fields: ["Intitulé de la question", "Format de la question", "Réponse Vrai/Faux", "Infos sup. réponse VRAI", "Infos sup. réponse FAUX", "# réponse vraie QCM", "Réponse 1 - QCM", "Réponse 2 - QCM", "Réponse 3 - QCM", "Réponse 4 - QCM", "Infos complémentaires lien", "Infos sup. réponse 1", "Infos sup. réponse 2", "Infos sup. réponse 3", "Infos sup. réponse 4"]
   }).eachPage(
     function (records: any, fetchNextPage: any) {

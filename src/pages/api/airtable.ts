@@ -9,8 +9,9 @@ export default async function airtableHandler(req: NextApiRequest, res: NextApiR
 
     const themeName = req.query.themeName as string;
     const numberOfQuestions = Number(req.query.numberOfQuestions);
+    const difficulty = req.query.difficulty as string;
 
-    const records = await getRecords(themeName, numberOfQuestions);
+    const records = await getRecords(themeName, numberOfQuestions, difficulty);
 
     res.status(200).json(records);
 }
