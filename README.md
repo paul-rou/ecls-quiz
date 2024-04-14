@@ -1,6 +1,20 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Quiz - Ensemble contre le Sexisme
 
-## Getting Started
+Ce repository contient le code du quiz Ensemble contre le Sexisme.
+Il est possible de tester directement le quiz lié à cette page Github via l'outil de déploiement automatique Vercel, au lien suivant : [https://ecls-quiz.vercel.app/](https://ecls-quiz.vercel.app/) 
+
+Diagramme technique de l'application :
+![Diagramme technique de l'application](public/Diagramme_technique.png)
+
+Ce projet est créé à l'aide du Framework React [Next.js](https://nextjs.org/), créé à l'aide de la commande [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app), et utilise Tailwind CSS pour la forme.
+
+Concernant la base de données, deux solutions sont implémentées :
+- Airtable, solution actuellement en prod
+- Baserow, solution fonctionnelle qui nous permet d'héberger nous-même les données (notamment en cas de problématiques RGPD)
+
+Pour obtenir les accès à ces bases de données, vous pouvez actuellement contacter Paul Rousseau (paul.rousseau@student-cs.fr) ou Isabelle Dumont (isajudumont@gmail.com).
+
+## Lancer l'application localement
 
 First, run the development server:
 
