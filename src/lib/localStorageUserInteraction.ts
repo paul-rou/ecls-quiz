@@ -1,7 +1,9 @@
-const updateUserScore = (newExperience: string, newFoundAnswers: string, levelCompleted: boolean) => {
+const updateUserScore = (newExperience: string, newFoundAnswers: string, levelCompleted: boolean, themeName: string, difficultyIndex: number) => {
     const experience = localStorage.getItem("experience");
     const foundAnswers = localStorage.getItem("foundAnswers");
     const levelCompletedNumber = localStorage.getItem("levelCompletedNumber");
+    const levelExperience = localStorage.getItem("levelExperience");
+
 
     if (experience) {
         localStorage.setItem("experience", String(Number(experience) + Number(newExperience)));
@@ -16,10 +18,17 @@ const updateUserScore = (newExperience: string, newFoundAnswers: string, levelCo
     }
 
     if (levelCompleted) {
-        if (levelCompletedNumber) {
-            localStorage.setItem("levelCompletedNumber", String(Number(levelCompletedNumber) + 1));
-        } else {
-            localStorage.setItem("levelCompletedNumber", "1");
+        if (levelExperience) {
+            // On commence par regarder si le niveau n'a pas déjà été complété
+            const levelExperienceParsed = JSON.parse(levelExperience);
+            levelExperienceParsed[themeName] = levelExperienceParsed[themeName] ?? [0, 0, 0];
+            if (levelExperienceParsed[themeName][difficultyIndex] !== 0) {
+                if (levelCompletedNumber) {
+                    localStorage.setItem("levelCompletedNumber", String(Number(levelCompletedNumber) + 1));
+                } else {
+                    localStorage.setItem("levelCompletedNumber", "1");
+                }
+            }
         }
     } else {
         localStorage.setItem("levelCompletedNumber", "0");

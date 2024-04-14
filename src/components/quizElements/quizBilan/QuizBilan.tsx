@@ -29,15 +29,18 @@ const QuizBilan = ({
   difficulty,
   setEndQuiz,
 }: Props) => {
+  const difficultyIndex = getDifficultyIndex(difficulty);
   // On est dans un cas de SSR, useEffect tourne côté client, localStorage est donc défini
   useEffect(() => {
     updateUserScore(
       String(xpGained),
       String(score),
-      numberOfQuestions == score
+      numberOfQuestions == score,
+      themeName,
+      difficultyIndex
     );
     if (numberOfQuestions == score)
-      setUserLevelExperience(themeName, getDifficultyIndex(difficulty));
+      setUserLevelExperience(themeName, difficultyIndex);
   }, []);
   return (
     <div className="flex flex-col mt-5 items-center text-center [font-family:'Inter-Bold', Helvetica] space-y-10">
