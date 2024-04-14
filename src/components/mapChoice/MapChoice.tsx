@@ -118,7 +118,7 @@ const MapChoice = () => {
         <MapChoiceButton />
       ) : (
         <Link
-          href={`/quiz?theme=${encodeURIComponent(
+          href={`/difficulty?theme=${encodeURIComponent(
             mapChoices[selectedMap].altLogo
           )}`}
         >

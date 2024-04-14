@@ -28,10 +28,12 @@ const QuizWrapper = ({
   themeNameToShow,
   themeName,
   themeLogo,
+  difficulty,
 }: {
   themeNameToShow?: string;
   themeName?: string;
   themeLogo?: string;
+  difficulty?: string;
 }) => {
   // !! Hardcodé pour l'instant
   const [numberOfQuestions, setNumberOfQuestions] = useState<number>(5);
@@ -49,6 +51,7 @@ const QuizWrapper = ({
     const params = new URLSearchParams({
       themeName: themeName ?? "Droit",
       numberOfQuestions: String(numberOfQuestions),
+      difficulty: difficulty ?? "Facile",
     });
 
     fetch(`/api/airtable?${params}`, {

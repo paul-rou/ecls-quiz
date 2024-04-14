@@ -35,7 +35,7 @@ const MapChoiceCard = ({
 
   if (isMobile) {
     return (
-      <Link href={`/quiz?theme=${encodeURIComponent(altLogo)}`}>
+      <Link href={`/difficulty?theme=${encodeURIComponent(altLogo)}`}>
         <div
           className={
             "flex w-[394px] items-center justify-center pl-[20px] pr-[20px] py-[20px] relative"

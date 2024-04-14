@@ -1,20 +1,19 @@
 "use client";
-import QuizWrapper from "@/components/quizElements/quizWrapper/QuizWrapper";
 import NavBar from "@/components/navBar/NavBar";
 import { useSearchParams } from "next/navigation";
 import { getThemeInfoByAltLogo } from "../../lib/nameOfThemesList";
+import DifficultyWrapper from "@/components/difficultyElements/difficultyWrapper.tsx/DifficultyWrapper";
 
-export default function Home() {
+export default function Difficulty() {
   // Fetch the theme from the URL :
   const searchParams = useSearchParams();
   const theme = searchParams?.get("theme");
-  const difficulty = searchParams?.get("difficulty") ?? "Facile";
 
   // Retrieve the svg linked and name linked to this theme
   const themeInfo = getThemeInfoByAltLogo(`${theme}`);
   const themeLogo = themeInfo?.themeLogo;
   const themeNameToShow = themeInfo?.name;
-  const themeName = themeInfo?.themeName;
+  const altLogo = themeInfo?.altLogo ?? "";
 
   return (
     <>
@@ -23,12 +22,7 @@ export default function Home() {
         themeName={themeNameToShow}
         displayUserButton={false}
       />
-      <QuizWrapper
-        themeNameToShow={themeNameToShow}
-        themeLogo={themeLogo}
-        themeName={themeName}
-        difficulty={difficulty}
-      />
+      <DifficultyWrapper altLogo={altLogo} />
     </>
   );
 }
