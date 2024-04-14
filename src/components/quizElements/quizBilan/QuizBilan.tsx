@@ -8,6 +8,7 @@ import {
 } from "@/lib/localStorageUserInteraction";
 import { useEffect, useState } from "react";
 import DifficultyBilanCard from "@/components/difficultyElements/difficultyBilanCard/DifficultyBilanCard";
+import { getDifficultyIndex } from "@/lib/difficultyMapping";
 
 interface Props {
   score: number;
@@ -15,6 +16,7 @@ interface Props {
   xpGained: number;
   themeName: string;
   themeLogo: string;
+  difficulty: string;
   setEndQuiz: () => void;
 }
 
@@ -24,6 +26,7 @@ const QuizBilan = ({
   xpGained,
   themeName,
   themeLogo,
+  difficulty,
   setEndQuiz,
 }: Props) => {
   // On est dans un cas de SSR, useEffect tourne côté client, localStorage est donc défini
@@ -33,14 +36,15 @@ const QuizBilan = ({
       String(score),
       numberOfQuestions == score
     );
-    if (numberOfQuestions == score) setUserLevelExperience(themeName, 1);
+    if (numberOfQuestions == score)
+      setUserLevelExperience(themeName, getDifficultyIndex(difficulty));
   }, []);
   return (
     <div className="flex flex-col mt-5 items-center text-center [font-family:'Inter-Bold', Helvetica] space-y-10">
       <h1 className="text-[#4B4B4B] font-bold text-xl">Bilan de la session</h1>
       <div className="flex flex-col gap-3">
         <ThemeCard themeName={themeName} themeLogo={themeLogo} />
-        <DifficultyBilanCard difficulty="Facile" />
+        <DifficultyBilanCard difficulty={difficulty} />
       </div>
       <div className="flex flex-row lg:space-x-48 md:space-x-24 space-x-5">
         <BilanCard

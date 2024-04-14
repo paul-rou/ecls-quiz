@@ -102,6 +102,7 @@ const QuizWrapper = ({
           }
           themeName={themeNameToShow ?? "Droit"}
           themeLogo={themeLogo ?? droit}
+          difficulty={difficulty ?? "Facile"}
           setEndQuiz={() => {
             /*             setQuizState({
               isAnswered: false,
