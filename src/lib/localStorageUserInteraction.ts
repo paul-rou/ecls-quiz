@@ -34,4 +34,38 @@ const getUserScore = () => {
     return { experience, foundAnswers, levelCompletedNumber };
 }
 
-export { updateUserScore, getUserScore };
+const setUserLevelExperience = (themeName: string, difficulty: number) => {
+    const levelExperience = localStorage.getItem("levelExperience");
+
+    if (levelExperience) {
+        const levelExperienceParsed = JSON.parse(levelExperience);
+        levelExperienceParsed[themeName] = levelExperienceParsed[themeName] ?? [0, 0, 0];
+        levelExperienceParsed[themeName][difficulty] = 100/3;
+
+        localStorage.setItem("levelExperience", JSON.stringify(levelExperienceParsed));
+    } else {
+        const levelExperience: {
+            [key: string]: [number, number, number];
+        } = {};
+        levelExperience[themeName] = [0, 0, 0];
+        levelExperience[themeName][difficulty] = 100/3;
+
+        localStorage.setItem("levelExperience", JSON.stringify(levelExperience));
+    }
+}
+
+const getUserExperienceByTheme = (themeName: string) => {
+    const levelExperience = localStorage.getItem("levelExperience");
+
+    let levelExperienceByTheme = 0;
+    if (levelExperience) {
+        const levelExperienceParsed = JSON.parse(levelExperience);
+        levelExperienceByTheme = levelExperienceParsed[themeName]?.reduce(
+            (acc: number, current: number) => acc + current, 0,
+        ) ?? 0;
+    }
+
+    return levelExperienceByTheme;
+}
+
+export { updateUserScore, getUserScore, setUserLevelExperience, getUserExperienceByTheme };

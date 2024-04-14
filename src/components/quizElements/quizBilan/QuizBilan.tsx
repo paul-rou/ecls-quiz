@@ -2,7 +2,10 @@ import Link from "next/link";
 import EndButton from "../endButton/EndButton";
 import BilanCard from "./bilanCard/BilanCard";
 import ThemeCard from "@/components/themeCard/ThemeCard";
-import { updateUserScore } from "@/lib/localStorageUserInteraction";
+import {
+  setUserLevelExperience,
+  updateUserScore,
+} from "@/lib/localStorageUserInteraction";
 import { useEffect, useState } from "react";
 
 interface Props {
@@ -29,6 +32,7 @@ const QuizBilan = ({
       String(score),
       numberOfQuestions == score
     );
+    if (numberOfQuestions == score) setUserLevelExperience(themeName, 1);
   }, []);
   return (
     <div className="flex flex-col mt-5 items-center text-center [font-family:'Inter-Bold', Helvetica] space-y-10">

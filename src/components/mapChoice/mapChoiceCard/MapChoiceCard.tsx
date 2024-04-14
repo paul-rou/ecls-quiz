@@ -1,6 +1,7 @@
 import React from "react";
 import Image from "next/image";
 import Link from "next/link";
+import { CircularProgress } from "@chakra-ui/react";
 
 interface Props {
   content: string;
@@ -10,6 +11,7 @@ interface Props {
   setSelected: () => void;
   isSelected: boolean;
   isMobile: boolean;
+  levelExperience: number;
 }
 
 const MapChoiceCard = ({
@@ -20,6 +22,7 @@ const MapChoiceCard = ({
   setSelected,
   isSelected,
   isMobile,
+  levelExperience,
 }: Props) => {
   // On arrondit les bords du bloc différement en fonction de sa position
   let roundedClass = "";
@@ -54,6 +57,11 @@ const MapChoiceCard = ({
             <div className="relative w-fit font-bold text-[#4b4b4b] text-sm tracking-wide leading-[20px] whitespace-nowrap">
               {content}
             </div>
+            <CircularProgress
+              className="ml-2"
+              value={levelExperience}
+              size="30px"
+            />
           </div>
         </div>
       </Link>
@@ -86,6 +94,11 @@ const MapChoiceCard = ({
             <div className="relative w-fit font-semibold text-[#4b4b4b] text-sm tracking-wide leading-[20px] whitespace-nowrap">
               {content}
             </div>
+            <CircularProgress
+              className="ml-2"
+              value={levelExperience}
+              size="30px"
+            />
           </div>
         </div>
       </button>
