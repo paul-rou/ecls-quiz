@@ -1,3 +1,4 @@
+import BadgeWrapper from "./badgeWrapper/BadgeWrapper";
 import StatisticsWrapper from "./statisticsWrapper/StatisticsWrapper";
 
 const UserWrapper = ({
@@ -10,12 +11,13 @@ const UserWrapper = ({
   userNbLevels: number;
 }) => {
   return (
-    <div>
+    <div className="flex flex-col md:flex-row lg:-space-x-40 xl:-space-x-96">
       <StatisticsWrapper
         userXP={userXP}
         userNbLevels={userNbLevels}
         userNbQuestions={userNbQuestions}
       />
+      <BadgeWrapper />
     </div>
   );
 };
