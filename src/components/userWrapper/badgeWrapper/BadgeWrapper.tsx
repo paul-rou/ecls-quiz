@@ -1,11 +1,26 @@
 import Image from "next/image";
+import React, { useEffect, useState } from "react";
 import { getBadgeLogoByName, nameOfThemeList } from "@/lib/nameOfThemesList";
 import { getUserExperienceByTheme } from "@/lib/localStorageUserInteraction";
 
 const BadgeWrapper = () => {
+  type UserExperience = { [key: string]: number };
+
+  // State to store the user experience for each theme
+  const [userExperience, setUserExperience] = useState<UserExperience>({});
+
+  useEffect(() => {
+    // Fetch user experience for each theme
+    const userExperienceData: UserExperience = {};
+    nameOfThemeList.forEach((theme) => {
+      userExperienceData[theme.name] = getUserExperienceByTheme(theme.name);
+    });
+    setUserExperience(userExperienceData);
+  }, []);
+
   // Create a dictionary to store theme names and badge logos
   const badgeLogos: { [key: string]: string } = {};
-  // Populate the dictionary using the getBadgeLogoByName function
+
   nameOfThemeList.forEach((theme) => {
     const badgeLogo = getBadgeLogoByName(theme.name);
     if (badgeLogo) {
@@ -27,21 +42,19 @@ const BadgeWrapper = () => {
             >
               <Image
                 className={`w-20 h-20 ${
-                  getUserExperienceByTheme(theme.name) < 100 ? "grayscale" : ""
+                  userExperience[theme.name] > 99 ? "" : "grayscale" // On inverse l'ordre ici pour que l'affichage de la page par défaut soit en grayscale
                 }`}
                 src={badgeLogos[theme.name]}
                 alt={theme.name}
                 title={
-                  getUserExperienceByTheme(theme.name) < 100
+                  userExperience[theme.name] < 100
                     ? `Complète tous les niveaux du thème ${theme.name} pour débloquer ce badge !`
                     : ""
                 }
               />
               <span
                 className={`text-xs text-center ${
-                  getUserExperienceByTheme(theme.name) < 100
-                    ? "text-gray-400"
-                    : ""
+                  userExperience[theme.name] < 100 ? "text-gray-400" : ""
                 }`}
               >
                 {theme.name}
