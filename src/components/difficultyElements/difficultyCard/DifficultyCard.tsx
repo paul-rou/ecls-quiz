@@ -1,14 +1,17 @@
 import React from "react";
-import Image from "next/image";
 import Link from "next/link";
+import Image from "next/image";
+import rightIcon from "../../../../public/right-icon.svg";
+import wrongIcon from "../../../../public/wrong-icon.svg";
 
 interface Props {
   content: string;
   altLogo: string;
   position: string;
+  solved: boolean;
 }
 
-const DifficultyCard = ({ content, altLogo, position }: Props) => {
+const DifficultyCard = ({ content, altLogo, position, solved }: Props) => {
   // On arrondit les bords du bloc différement en fonction de sa position
   let roundedClass = "";
   let difficultyColor = "";
@@ -31,6 +34,8 @@ const DifficultyCard = ({ content, altLogo, position }: Props) => {
       break;
   }
 
+  const solvedColor = solved ? "border-green-300" : "border-gray-200";
+
   return (
     <Link
       href={`/quiz?theme=${encodeURIComponent(
@@ -51,6 +56,20 @@ const DifficultyCard = ({ content, altLogo, position }: Props) => {
           <div className={"h-5 w-5 mr-2 rounded-full " + difficultyColor} />
           <div className="relative w-fit font-bold text-[#4b4b4b] text-sm tracking-wide leading-[20px] whitespace-nowrap">
             {content}
+          </div>
+          <div
+            className={`ml-3 flex border-2 border-r-solid ${solvedColor} rounded-lg`}
+          >
+            <Image
+              src={solved ? rightIcon : wrongIcon}
+              className={solved ? "mt-1 mb-0.5 ml-1" : "my-1 ml-1"}
+              alt="icon vrai"
+              width={20}
+              height={20}
+            />
+            <p className="text-xs mt-1 ml-1 mr-2">
+              {solved ? "Résolu" : "Non résolu"}
+            </p>
           </div>
         </div>
       </div>

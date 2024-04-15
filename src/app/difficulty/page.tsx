@@ -3,6 +3,8 @@ import NavBar from "@/components/navBar/NavBar";
 import { useSearchParams } from "next/navigation";
 import { getThemeInfoByAltLogo } from "../../lib/nameOfThemesList";
 import DifficultyWrapper from "@/components/difficultyElements/difficultyWrapper.tsx/DifficultyWrapper";
+import { useEffect, useState } from "react";
+import { getUserExperienceByThemeByLevel } from "@/lib/localStorageUserInteraction";
 
 export default function Difficulty() {
   // Fetch the theme from the URL :
@@ -12,8 +14,18 @@ export default function Difficulty() {
   // Retrieve the svg linked and name linked to this theme
   const themeInfo = getThemeInfoByAltLogo(`${theme}`);
   const themeLogo = themeInfo?.themeLogo;
-  const themeNameToShow = themeInfo?.name;
+  const themeNameToShow = themeInfo?.name ?? "";
   const altLogo = themeInfo?.altLogo ?? "";
+
+  const [levelsCompletion, setLevelsCompletion] = useState<number[]>([0, 0, 0]);
+
+  useEffect(() => {
+    console.log(
+      themeNameToShow,
+      getUserExperienceByThemeByLevel(themeNameToShow)
+    );
+    setLevelsCompletion(getUserExperienceByThemeByLevel(themeNameToShow));
+  }, []);
 
   return (
     <>
@@ -22,7 +34,10 @@ export default function Difficulty() {
         themeName={themeNameToShow}
         displayUserButton={false}
       />
-      <DifficultyWrapper altLogo={altLogo} />
+      <DifficultyWrapper
+        altLogo={altLogo}
+        levelsCompletion={levelsCompletion}
+      />
     </>
   );
 }
