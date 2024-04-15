@@ -20,10 +20,6 @@ export default function Difficulty() {
   const [levelsCompletion, setLevelsCompletion] = useState<number[]>([0, 0, 0]);
 
   useEffect(() => {
-    console.log(
-      themeNameToShow,
-      getUserExperienceByThemeByLevel(themeNameToShow)
-    );
     setLevelsCompletion(getUserExperienceByThemeByLevel(themeNameToShow));
   }, []);
 
