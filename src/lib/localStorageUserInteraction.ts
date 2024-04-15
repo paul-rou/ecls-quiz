@@ -77,4 +77,15 @@ const getUserExperienceByTheme = (themeName: string) => {
     return levelExperienceByTheme;
 }
 
-export { updateUserScore, getUserScore, setUserLevelExperience, getUserExperienceByTheme };
+const getUserExperienceByThemeByLevel = (themeName: string) => {
+    const levelExperience = localStorage.getItem("levelExperience");
+
+    if (levelExperience) {
+        const levelExperienceParsed = JSON.parse(levelExperience);
+        return levelExperienceParsed[themeName] ?? [0,0,0];
+    }
+
+    return [0,0,0];
+}
+
+export { updateUserScore, getUserScore, setUserLevelExperience, getUserExperienceByTheme, getUserExperienceByThemeByLevel };

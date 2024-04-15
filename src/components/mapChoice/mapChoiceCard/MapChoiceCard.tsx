@@ -2,6 +2,7 @@ import React from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { CircularProgress } from "@chakra-ui/react";
+import checkboxIcon from "../../../../public/checkboxIcon.svg";
 
 interface Props {
   content: string;
@@ -57,11 +58,15 @@ const MapChoiceCard = ({
             <div className="relative w-fit font-bold text-[#4b4b4b] text-sm tracking-wide leading-[20px] whitespace-nowrap">
               {content}
             </div>
-            <CircularProgress
-              className="ml-2"
-              value={levelExperience}
-              size="30px"
-            />
+            {levelExperience < 100 ? (
+              <CircularProgress
+                className="ml-2"
+                value={levelExperience}
+                size="30px"
+              />
+            ) : (
+              <Image src={checkboxIcon} alt={"checkbox icon"} />
+            )}
           </div>
         </div>
       </Link>
@@ -94,11 +99,21 @@ const MapChoiceCard = ({
             <div className="relative w-fit font-semibold text-[#4b4b4b] text-sm tracking-wide leading-[20px] whitespace-nowrap">
               {content}
             </div>
-            <CircularProgress
-              className="ml-2"
-              value={levelExperience}
-              size="30px"
-            />
+            {levelExperience < 100 ? (
+              <CircularProgress
+                className="ml-2"
+                value={levelExperience}
+                size="30px"
+              />
+            ) : (
+              <Image
+                src={checkboxIcon}
+                className="ml-2"
+                alt={"checkbox icon"}
+                width={30}
+                height={30}
+              />
+            )}
           </div>
         </div>
       </button>
