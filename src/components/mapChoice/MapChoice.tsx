@@ -7,6 +7,7 @@ import droit from "../../../public/theme-svg/droit.svg";
 import artsCulture from "../../../public/theme-svg/arts-culture.svg";
 import autresThemes from "../../../public/theme-svg/autres-themes.svg";
 import allThemes from "../../../public/theme-svg/allThemes.svg";
+import violences from "../../../public/theme-svg/violences.svg";
 
 import MapChoiceCard from "./mapChoiceCard/MapChoiceCard";
 import { useState } from "react";
