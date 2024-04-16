@@ -18,6 +18,11 @@ const settingsMenu = () => {
               Site de l&apos;association
             </Link>
           </div>
+          <div className="py-2 text-[18px] text-center text-blue-800 underline">
+            <Link href="/credits" target="_blank">
+              Crédits
+            </Link>
+          </div>
         </div>
       </div>
     </>
