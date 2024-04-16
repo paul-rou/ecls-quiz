@@ -14,7 +14,7 @@ const settingsMenu = () => {
             <FontToggle />
           </div>
           <div className="py-2 text-[18px] text-center text-blue-800 underline">
-            <Link href="https://ensemblecontrelesexisme.org/">
+            <Link href="https://ensemblecontrelesexisme.org/" target="_blank">
               Site de l&apos;association
             </Link>
           </div>
