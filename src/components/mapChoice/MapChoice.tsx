@@ -61,6 +61,13 @@ const MapChoice = () => {
       levelExperience: 0,
     },
     {
+      content: "Violences",
+      altLogo: "violences",
+      themeLogo: violences,
+      position: "mid",
+      levelExperience: 0,
+    },
+    {
       content: "Autre",
       altLogo: "autresThemes",
       themeLogo: autresThemes,
