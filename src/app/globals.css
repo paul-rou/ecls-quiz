@@ -1,38 +1,4 @@
 @tailwind base;
-@tailwind components;
-@tailwind utilities;
-
-:root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
-  --base-font-size: 20px;
-  --font-family: 'Inter', Georgia, serif; /* Default font */
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
-  }
-}
-
-@font-face {
-  font-family: 'Inter';
-  src: url('../../font/Inter-VariableFont_slnt\,wght.ttf') format('truetype');
-}
-
-@font-face {
-  font-family: 'Atkinson Hyperlegible';
-  src: url('../../font/static/Atkinson-Hyperlegible-Regular-102.ttf') format('truetype');
-}
-
-body {
-  font-family: var(--font-family);
-}
-
-html {
-  font-family: var(--font-family);
-  font-size: var(--base-font-size);
-}
+  @tailwind components;
+  @tailwind utilities;
+  
