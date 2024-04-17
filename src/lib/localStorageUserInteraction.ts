@@ -19,7 +19,7 @@ const updateUserScore = (newExperience: string, newFoundAnswers: string) => {
 const getUserScore = () => {
     const experience = localStorage.getItem("experience") ?? "0";
     const foundAnswers = localStorage.getItem("foundAnswers") ?? "0";
-    let levelCompletedNumber = 0;
+    let levelCompletedNumber = "0";
     const levelExperience = localStorage.getItem("levelExperience") ?? "{}";
 
     if (levelExperience) {
@@ -34,7 +34,7 @@ const getUserScore = () => {
                 })
                 return acc;
             }, 0,
-        );
+        ).toString();
     }
 
     return { experience, foundAnswers, levelCompletedNumber };
