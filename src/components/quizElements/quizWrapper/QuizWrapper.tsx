@@ -9,6 +9,7 @@ import { Question } from "@/types/quizTypes";
 import NextButton from "../nextButton/NextButton";
 import QuizBilan from "../quizBilan/QuizBilan";
 import droit from "../../../../public/theme-svg/droit.svg";
+import { loadingTips } from "@/lib/loadingTips";
 
 type QuizState = {
   isAnswered: Boolean;
@@ -37,6 +38,9 @@ const QuizWrapper = ({
 }) => {
   // !! Hardcodé pour l'instant
   const [numberOfQuestions, setNumberOfQuestions] = useState<number>(5);
+
+  const randomTip = loadingTips[Math.floor(Math.random() * loadingTips.length)];
+
   const [quizState, setQuizState] = useState<QuizState>({
     isAnswered: false,
     answerIndex: -1,
@@ -78,9 +82,12 @@ const QuizWrapper = ({
 
   if (!question)
     return (
-      <p className="m-4 text-[#4B4B4B] font-bold text-xl">
-        Chargement du quiz...
-      </p>
+      <div className="flex flex-col mt-5 items-center justify-center">
+        <p className="text-[#4B4B4B] font-bold text-xl text-center">
+          Chargement du quiz...
+        </p>
+        <p className="text-sm text-gray-400 mt-5">{randomTip}</p>
+      </div>
     );
   return (
     <div className="flex flex-col items-center text-center md:mx-20 mx-3">
