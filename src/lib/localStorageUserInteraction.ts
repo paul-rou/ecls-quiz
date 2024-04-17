@@ -1,8 +1,6 @@
-const updateUserScore = (newExperience: string, newFoundAnswers: string, levelCompleted: boolean, themeName: string, difficultyIndex: number) => {
+const updateUserScore = (newExperience: string, newFoundAnswers: string) => {
     const experience = localStorage.getItem("experience");
     const foundAnswers = localStorage.getItem("foundAnswers");
-    const levelCompletedNumber = localStorage.getItem("levelCompletedNumber");
-    const levelExperience = localStorage.getItem("levelExperience");
 
 
     if (experience) {
@@ -16,29 +14,28 @@ const updateUserScore = (newExperience: string, newFoundAnswers: string, levelCo
     } else {
         localStorage.setItem("foundAnswers", newFoundAnswers);
     }
-
-    if (levelCompleted) {
-        if (levelExperience) {
-            // On commence par regarder si le niveau n'a pas déjà été complété
-            const levelExperienceParsed = JSON.parse(levelExperience);
-            levelExperienceParsed[themeName] = levelExperienceParsed[themeName] ?? [0, 0, 0];
-            if (levelExperienceParsed[themeName][difficultyIndex] !== 0) {
-                if (levelCompletedNumber) {
-                    localStorage.setItem("levelCompletedNumber", String(Number(levelCompletedNumber) + 1));
-                } else {
-                    localStorage.setItem("levelCompletedNumber", "1");
-                }
-            }
-        }
-    } else {
-        localStorage.setItem("levelCompletedNumber", "0");
-    }
 }
 
 const getUserScore = () => {
     const experience = localStorage.getItem("experience") ?? "0";
     const foundAnswers = localStorage.getItem("foundAnswers") ?? "0";
-    const levelCompletedNumber = localStorage.getItem("levelCompletedNumber") ?? "0";
+    let levelCompletedNumber = 0;
+    const levelExperience = localStorage.getItem("levelExperience") ?? "{}";
+
+    if (levelExperience) {
+        const levelExperienceParsed: {
+            [key: string]: [number, number, number];
+        } = JSON.parse(levelExperience);
+        
+        levelCompletedNumber = Object.values(levelExperienceParsed).reduce(
+            (acc: number, current: number[]) => {
+                current.forEach((levelNumber: number) => {
+                    if (levelNumber === 100/3) acc++;
+                })
+                return acc;
+            }, 0,
+        );
+    }
 
     return { experience, foundAnswers, levelCompletedNumber };
 }
@@ -49,6 +46,7 @@ const setUserLevelExperience = (themeName: string, difficulty: number) => {
     if (levelExperience) {
         const levelExperienceParsed = JSON.parse(levelExperience);
         levelExperienceParsed[themeName] = levelExperienceParsed[themeName] ?? [0, 0, 0];
+
         levelExperienceParsed[themeName][difficulty] = 100/3;
 
         localStorage.setItem("levelExperience", JSON.stringify(levelExperienceParsed));
@@ -60,6 +58,7 @@ const setUserLevelExperience = (themeName: string, difficulty: number) => {
         levelExperience[themeName][difficulty] = 100/3;
 
         localStorage.setItem("levelExperience", JSON.stringify(levelExperience));
+
     }
 }
 

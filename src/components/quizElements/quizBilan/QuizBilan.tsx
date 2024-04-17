@@ -48,13 +48,7 @@ const QuizBilan = ({
       });
       if (varWin) setWinBadge(true);
     }
-    updateUserScore(
-      String(xpGained),
-      String(score),
-      numberOfQuestions == score,
-      themeName,
-      difficultyIndex
-    );
+    updateUserScore(String(xpGained), String(score));
     if (numberOfQuestions == score)
       setUserLevelExperience(themeName, difficultyIndex);
   }, []);
