@@ -11,7 +11,6 @@ import violences from "../../../public/theme-svg/violences.svg";
 
 import MapChoiceCard from "./mapChoiceCard/MapChoiceCard";
 import { useState } from "react";
-import MapChoiceButton from "./mapChoiceButton/MapChoiceButton";
 import { getUserExperienceByTheme } from "@/lib/localStorageUserInteraction";
 
 interface MapChoice {
@@ -83,13 +82,10 @@ const MapChoice = () => {
     },
   ];
 
-  const [selectedMap, setselectedMap] = useState<number | undefined>();
-  const [isMobile, setIsMobile] = useState<boolean>(false);
   const [levelExperience, setLevelExperience] =
     useState<MapChoice[]>(mapChoices);
 
   useEffect(() => {
-    setIsMobile(window.innerWidth <= 500);
     setLevelExperience(
       mapChoices.map((mapChoice) => {
         return {
@@ -109,30 +105,13 @@ const MapChoice = () => {
       {mapChoices.map((choice, index) => (
         <MapChoiceCard
           key={index}
-          isMobile={isMobile}
           content={choice.content}
           altLogo={choice.altLogo}
           themeLogo={choice.themeLogo}
           position={choice.position}
-          setSelected={() => setselectedMap(index)}
-          isSelected={selectedMap === index}
           levelExperience={levelExperience[index].levelExperience}
         />
       ))}
-
-      {isMobile ? (
-        <></>
-      ) : selectedMap === undefined ? (
-        <MapChoiceButton />
-      ) : (
-        <Link
-          href={`/difficulty?theme=${encodeURIComponent(
-            mapChoices[selectedMap].altLogo
-          )}`}
-        >
-          <MapChoiceButton />
-        </Link>
-      )}
     </div>
   );
 };
