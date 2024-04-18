@@ -19,6 +19,7 @@ interface MapChoice {
   themeLogo: string;
   position: string;
   levelExperience: number;
+  showWarning?: boolean;
 }
 
 const MapChoice = () => {
@@ -65,6 +66,7 @@ const MapChoice = () => {
       themeLogo: violences,
       position: "mid",
       levelExperience: 0,
+      showWarning: true,
     },
     {
       content: "Autre",
@@ -110,6 +112,7 @@ const MapChoice = () => {
           themeLogo={choice.themeLogo}
           position={choice.position}
           levelExperience={levelExperience[index].levelExperience}
+          showWarning={choice?.showWarning}
         />
       ))}
     </div>

@@ -1,8 +1,8 @@
 import React from "react";
 import Image from "next/image";
-import Link from "next/link";
 import { CircularProgress } from "@chakra-ui/react";
 import checkboxIcon from "../../../../public/checkboxIcon.svg";
+import MapChoiceCardWrapper from "./MapChoiceCardWrapper";
 
 interface Props {
   content: string;
@@ -10,6 +10,7 @@ interface Props {
   themeLogo: string;
   position: string;
   levelExperience: number;
+  showWarning?: boolean;
 }
 
 const MapChoiceCard = ({
@@ -18,6 +19,7 @@ const MapChoiceCard = ({
   themeLogo,
   position,
   levelExperience,
+  showWarning,
 }: Props) => {
   // On arrondit les bords du bloc différement en fonction de sa position
   let roundedClass = "";
@@ -30,7 +32,7 @@ const MapChoiceCard = ({
     roundedClass = "rounded-[16px_16px_0px_0px]";
   }
   return (
-    <Link href={`/difficulty?theme=${encodeURIComponent(altLogo)}`}>
+    <MapChoiceCardWrapper altLogo={altLogo} showWarning={showWarning}>
       <div
         className={`${bottomMargin} flex w-[394px] items-center justify-center pl-[20px] pr-[20px] py-[20px] relative`}
       >
@@ -65,7 +67,7 @@ const MapChoiceCard = ({
           )}
         </div>
       </div>
-    </Link>
+    </MapChoiceCardWrapper>
   );
 };
 

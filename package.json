@@ -17,12 +17,23 @@
     "@notion-render/client": "^0.0.2",
     "@notion-render/hljs-plugin": "^0.0.2",
     "@notionhq/client": "^2.2.14",
+    "@radix-ui/react-alert-dialog": "^1.0.5",
+    "@radix-ui/react-slot": "^1.0.2",
     "airtable": "^0.12.2",
+    "class-variance-authority": "^0.7.0",
+    "clsx": "^2.1.0",
     "framer-motion": "^11.0.28",
+    "lucide-react": "^0.370.0",
     "next": "14.0.3",
     "react": "^18",
+<<<<<<< HEAD
     "react-component-export-image": "^1.0.6",
     "react-dom": "^18"
+=======
+    "react-dom": "^18",
+    "tailwind-merge": "^2.2.2",
+    "tailwindcss-animate": "^1.0.7"
+>>>>>>> 70b9686 ([FEAT] Add showWarning parameter to theme && Add alert dialog before clicking on warning theme && Refacto by adding a wrapper to map choice button)
   },
   "devDependencies": {
     "@types/node": "^20",
