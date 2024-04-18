@@ -17,21 +17,27 @@ const StatisticsWrapper = ({
       <div className="h-[26px] font-bold text-[#3c3c3c] text-lg tracking-[0] leading-[26px] whitespace-nowrap">
         Statistiques
       </div>
-      <StatisticsCard
-        statName="Expérience totale"
-        statValue={userXP}
-        statImage={userXPicon}
-      />
-      <StatisticsCard
-        statName="Questions réussies"
-        statValue={userNbQuestions}
-        statImage={userQuestionsIcon}
-      />
-      <StatisticsCard
-        statName="Niveaux complétés"
-        statValue={userNbLevels}
-        statImage={userLevelsIcon}
-      />
+      <div title="Vous gagnez 4 points d'expérience par bonne réponse, amélioré à 5 par question si vous réussissez toutes les questions du niveau !">
+        <StatisticsCard
+          statName="Expérience totale"
+          statValue={userXP}
+          statImage={userXPicon}
+        />
+      </div>
+      <div title="Nombre de questions où vous avez répondu correctement">
+        <StatisticsCard
+          statName="Questions réussies"
+          statValue={userNbQuestions}
+          statImage={userQuestionsIcon}
+        />
+      </div>
+      <div title="Nombre de niveaux où vous avez répondu correctement à toutes les questions">
+        <StatisticsCard
+          statName="Niveaux complétés"
+          statValue={userNbLevels}
+          statImage={userLevelsIcon}
+        />
+      </div>
     </div>
   );
 };
