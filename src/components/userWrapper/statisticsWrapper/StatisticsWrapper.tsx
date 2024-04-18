@@ -13,7 +13,7 @@ const StatisticsWrapper = ({
   userNbLevels: number;
 }) => {
   return (
-    <div className="flex flex-col justify-center space-y-4 mt-5 items-center w-full h-full">
+    <div className="flex flex-col justify-center space-y-6 mt-5 items-center w-full h-full">
       <div className="h-[26px] font-bold text-[#3c3c3c] text-lg tracking-[0] leading-[26px] whitespace-nowrap">
         Statistiques
       </div>

@@ -2,6 +2,7 @@ import sun from "../../../public/Sun_Icon.svg";
 import idea from "../../../public/Idea_Icon.svg";
 import pen from "../../../public/Edit_Icon.svg";
 import code from "../../../public/Code_Icon.svg";
+import Link from "next/link";
 
 import StatisticsCard from "../userWrapper/statisticsCard/StatisticsCard";
 
@@ -14,16 +15,21 @@ const CreditsWrapper = ({}: {}) => {
       </div>
       <div className="flex flex-row justify-center space-x-4">
         <div className="flex flex-col justify-center space-y-3">
-          <StatisticsCard
-            statName="Coordinatrice Projet"
-            statValue="Isabelle Dumont"
-            statImage={sun}
-          />
-          <StatisticsCard
-            statName="Encadrante technique"
-            statValue="Marie Gautron"
-            statImage={idea}
-          />
+          <Link href="https://isavouszed.fr/" target="_blank">
+            <StatisticsCard
+              statName="Coordinatrice Projet"
+              statValue="Isabelle Dumont"
+              statImage={sun}
+            />
+          </Link>
+
+          <Link href="https://www.linkedin.com/in/mariegautron" target="_blank">
+            <StatisticsCard
+              statName="Encadrante technique"
+              statValue="Marie Gautron"
+              statImage={idea}
+            />
+          </Link>
           <StatisticsCard
             statName="Encadrant projet"
             statValue="Laurent Cabaret"
@@ -36,16 +42,26 @@ const CreditsWrapper = ({}: {}) => {
           />
         </div>
         <div className="flex flex-col justify-center space-y-3">
-          <StatisticsCard
-            statName="Développeur"
-            statValue="Cyprien Pierrot"
-            statImage={code}
-          />
-          <StatisticsCard
-            statName="Développeur"
-            statValue="Paul Rousseau"
-            statImage={code}
-          />
+          <Link
+            href="https://www.linkedin.com/in/cyprien-pierrot/"
+            target="_blank"
+          >
+            <StatisticsCard
+              statName="Développeur"
+              statValue="Cyprien Pierrot"
+              statImage={code}
+            />
+          </Link>
+          <Link
+            href="https://www.linkedin.com/in/paul--rousseau/"
+            target="_blank"
+          >
+            <StatisticsCard
+              statName="Développeur"
+              statValue="Paul Rousseau"
+              statImage={code}
+            />
+          </Link>
           <StatisticsCard
             statName="Contributrice"
             statValue="Gabriela Belaid"
@@ -95,11 +111,13 @@ const CreditsWrapper = ({}: {}) => {
             statValue="Moïra Sauvage"
             statImage={pen}
           />
-          <StatisticsCard
-            statName="Contributrice"
-            statValue="AAFA"
-            statImage={pen}
-          />
+          <Link href="https://www.latitudes.cc/" target="_blank">
+            <StatisticsCard
+              statName="Contributeurs.trices"
+              statValue="Association Latitudes"
+              statImage={pen}
+            />
+          </Link>
         </div>
       </div>
     </div>
