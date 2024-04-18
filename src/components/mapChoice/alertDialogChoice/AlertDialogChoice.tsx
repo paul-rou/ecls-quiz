@@ -12,7 +12,7 @@ import {
 import Link from "next/link";
 import { ReactNode } from "react";
 
-function AlertDialogChoiceUI({
+function AlertDialogChoice({
   children,
   altLogo,
 }: {
@@ -45,4 +45,4 @@ function AlertDialogChoiceUI({
   );
 }
 
-export default AlertDialogChoiceUI;
+export default AlertDialogChoice;
